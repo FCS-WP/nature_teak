@@ -1,0 +1,27 @@
+.wp-block-ai-zippy-child-home-ticker {
+  .ntk__editor-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 24px;
+  }
+
+  .ntk__item {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    border-radius: 2px;
+    padding: 4px 10px;
+    background: color-mix(in srgb, var(--wp--preset--color--bark, #3d2b1f) 8%, white);
+  }
+
+  .block-editor-rich-text__editable:focus {
+    outline: 2px solid color-mix(in srgb, var(--wp--preset--color--rust, #c17a54) 30%, transparent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .ntk__inner {
+    animation: none;
+  }
+}

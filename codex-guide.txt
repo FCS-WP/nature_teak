@@ -1,0 +1,162 @@
+AI ZIPPY CHILD THEME - BLOCK WORKFLOW GUIDE
+
+Purpose
+Use this guide when asking another AI (ChatGPT web, Claude web, etc.) to create or update homepage sections as reusable Gutenberg blocks for this project.
+
+Project rule
+Do not build page sections directly in templates like front-page.html.
+Create reusable custom blocks for the child theme so they can be inserted anywhere in the WordPress editor.
+
+Current architecture
+
+Parent theme:
+- src/wp-content/themes/ai-zippy
+- Contains reference blocks such as:
+  - src/wp-content/themes/ai-zippy/src/blocks/brand-intro
+  - src/wp-content/themes/ai-zippy/src/blocks/hero-section
+  - src/wp-content/themes/ai-zippy/src/blocks/product-showcase
+
+Child theme:
+- src/wp-content/themes/ai-zippy-child
+- This is where new custom page-section blocks should be created.
+- Child blocks are source files in:
+  - src/wp-content/themes/ai-zippy-child/src/blocks/<block-slug>/
+- Built files are generated in:
+  - src/wp-content/themes/ai-zippy-child/assets/blocks/<block-slug>/
+
+Block registration
+Child blocks are auto-registered by:
+- src/wp-content/themes/ai-zippy-child/functions.php
+
+Build commands
+- npm run build:child-blocks
+- npm run build
+
+Theme layout behavior
+- Child theme layout settings live in:
+  - src/wp-content/themes/ai-zippy-child/theme.json
+- Current layout:
+  - contentSize: 1200px
+  - wideSize: 1410px
+- Child page template override:
+  - src/wp-content/themes/ai-zippy-child/templates/page.html
+- This override allows full-width blocks to actually span full width.
+
+How every new block should be built
+Follow the same folder structure as brand-intro.
+Each block should include:
+- block.json
+- index.js
+- edit.js
+- save.js
+- render.php
+- style.scss
+- editor.scss
+
+Implementation rules
+1. Build blocks only in the child theme, not the parent theme.
+2. Use dynamic rendering:
+   - save.js should return null.
+   - render.php outputs the frontend markup.
+3. Follow the parent block style and conventions.
+4. Use safe escaping and sanitization in PHP:
+   - esc_html
+   - esc_url
+   - esc_attr
+   - wp_kses_post only when needed
+5. Keep class naming consistent and block-scoped.
+6. Put editor-only styling in editor.scss and shared/frontend styling in style.scss.
+7. Use InspectorControls for settings like images, URLs, labels, toggles, colors, and section options.
+8. Use RichText for editable text content in the block canvas where appropriate.
+9. Support alignments in block.json:
+   - "align": ["wide", "full"]
+10. If the block should insert as full width by default, include:
+   - "align": { "type": "string", "default": "full" }
+11. Boxed mode should still be available by switching alignment to None in the editor toolbar.
+12. Do not create page template markup for individual sections unless explicitly requested.
+
+Current example block
+Reference child block already created:
+- src/wp-content/themes/ai-zippy-child/src/blocks/home-hero
+
+This is the current example of the expected child-block pattern.
+
+Recommended workflow for another AI
+When given a mockup for a section:
+1. Choose a clear block slug, for example:
+   - home-hero
+   - home-about
+   - home-services
+2. Create the full block folder under:
+   - src/wp-content/themes/ai-zippy-child/src/blocks/<slug>/
+3. Match the mockup visually, but keep the block editor usable.
+4. Add editable attributes for all user-facing content:
+   - headings
+   - text
+   - button labels and URLs
+   - images
+   - badge text
+   - stats
+   - cards
+5. Compile with:
+   - npm run build:child-blocks
+6. Do not edit built files in assets/blocks directly.
+   Always edit source files in src/blocks and rebuild.
+
+Token-efficient prompt format
+Use this prompt with another AI:
+
+I am working in a WordPress child theme.
+Create a reusable Gutenberg block in the child theme only.
+
+Rules:
+- Follow the same structure as src/wp-content/themes/ai-zippy/src/blocks/brand-intro
+- Create the block in src/wp-content/themes/ai-zippy-child/src/blocks/<slug>/
+- Include block.json, index.js, edit.js, save.js, render.php, style.scss, editor.scss
+- Use dynamic rendering with save.js returning null
+- Use safe escaping in render.php
+- Support alignments wide and full
+- Default alignment should be full unless I say otherwise
+- The block must work directly in the editor and be insertable anywhere
+- Do not create or edit front-page template markup for this section
+- Do not edit built files in assets/blocks directly
+- After code changes, build with npm run build:child-blocks
+
+Existing project facts:
+- Child blocks auto-register from src/wp-content/themes/ai-zippy-child/assets/blocks
+- Child page template already allows full-width blocks
+- Child theme layout sizes: content 1200px, wide 1410px
+- Example reference block: src/wp-content/themes/ai-zippy-child/src/blocks/home-hero
+
+Now create a block for this section based on the mockup I provide.
+
+When to include extra context
+Only include these if needed:
+- exact file paths to mimic
+- whether the section should be full width or boxed by default
+- whether images should be editable from MediaUpload
+- whether buttons are optional
+- whether text should be edited inline or only in sidebar
+
+What not to send unless needed
+To save tokens, do not paste:
+- full contents of package.json
+- full contents of functions.php
+- full contents of large CSS files
+- compiled files in assets/blocks
+
+Instead, summarize the important constraints:
+- child theme only
+- reusable block only
+- brand-intro style file structure
+- dynamic render
+- build child blocks after changes
+
+Expected output from another AI
+The AI should return:
+- source code edits for the new child block
+- any required theme/support updates only if necessary
+- confirmation that the block should be rebuilt with npm run build:child-blocks
+
+Short version
+For this project, every homepage section should become a reusable child-theme Gutenberg block with the same source structure as brand-intro, built under src/wp-content/themes/ai-zippy-child/src/blocks, rendered via render.php, and compiled into assets/blocks for editor use.

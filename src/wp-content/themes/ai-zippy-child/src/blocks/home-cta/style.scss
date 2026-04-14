@@ -1,0 +1,54 @@
+.wp-block-ai-zippy-child-home-cta {
+  --ntc-sage: var(--wp--preset--color--sage, #7a9b5c);
+  --ntc-cream: var(--wp--preset--color--cream, #faf8f4);
+  --ntc-white: var(--wp--preset--color--white, #fff);
+  --ntc-serif: var(--wp--preset--font-family--playfair-display, "Playfair Display", sans-serif);
+  --ntc-sans: var(--wp--preset--font-family--dm-sans, "DM Sans", sans-serif);
+
+  background: var(--ntc-sage);
+  padding: 72px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-family: var(--ntc-sans);
+
+  .ntc__title {
+    margin: 0 0 8px;
+    color: var(--ntc-white);
+    font-family: var(--ntc-serif);
+    font-size: clamp(22px, 3vw, 38px);
+    line-height: 1.15;
+  }
+
+  .ntc__body {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .ntc__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 42px;
+    border: none;
+    border-radius: 2px;
+    background: white;
+    color: var(--ntc-sage);
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    transition: all 0.25s;
+
+    &:hover {
+      background: var(--ntc-cream);
+      transform: translateY(-2px);
+    }
+  }
+}

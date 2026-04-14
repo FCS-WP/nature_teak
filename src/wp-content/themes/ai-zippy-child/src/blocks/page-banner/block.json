@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy-child/page-banner",
+	"version": "1.0.0",
+	"title": "Page Banner",
+	"category": "ai-zippy",
+	"icon": "align-wide",
+	"description": "Simple editorial page banner with eyebrow, heading, and supporting text.",
+	"keywords": ["banner", "page", "hero", "intro"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"align": { "type": "string", "default": "full" },
+		"eyebrow": { "type": "string", "default": "Get In Touch" },
+		"heading": { "type": "string", "default": "Let's Talk Timber" },
+		"description": {
+			"type": "string",
+			"default": "Whether you're a contractor, interior designer, or trade professional, we're here to help you find the right wood for your project."
+		},
+		"backgroundColor": { "type": "string", "default": "" }
+	},
+	"textdomain": "ai-zippy-child",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

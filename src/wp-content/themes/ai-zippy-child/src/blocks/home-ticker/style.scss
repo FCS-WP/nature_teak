@@ -1,0 +1,49 @@
+.wp-block-ai-zippy-child-home-ticker {
+  --ntk-bg: var(--wp--preset--color--bark, #3d2b1f);
+  --ntk-text: var(--wp--preset--color--tan, #c9a96e);
+  --ntk-accent: var(--wp--preset--color--rust, #c17a54);
+  --ntk-font: var(--wp--preset--font-family--dm-sans, "DM Sans", sans-serif);
+  --ntk-size: var(--wp--preset--font-size--x-small, 0.6875rem);
+
+  background: var(--ntk-bg);
+  overflow: hidden;
+  position: relative;
+  padding: 14px 0;
+  font-family: var(--ntk-font);
+
+  .ntk__inner {
+    display: flex;
+    width: max-content;
+    gap: 0;
+    animation: ntkTicker 30s linear infinite;
+  }
+
+  .ntk__item {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    white-space: nowrap;
+    padding: 0 48px;
+    color: var(--ntk-text);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: var(--ntk-size);
+    font-weight: 600;
+
+    &::after {
+      content: "◆";
+      color: var(--ntk-accent);
+      font-size: 8px;
+    }
+  }
+
+  @keyframes ntkTicker {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}

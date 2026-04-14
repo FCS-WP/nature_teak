@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy-child/home-services",
+	"version": "1.0.0",
+	"title": "Home Services",
+	"category": "ai-zippy",
+	"icon": "screenoptions",
+	"description": "Core services grid section for the homepage.",
+	"keywords": ["services", "offerings", "grid"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"align": { "type": "string", "default": "full" },
+		"eyebrow": { "type": "string", "default": "What We Offer" },
+		"heading": { "type": "string", "default": "Our Core Services" },
+		"buttonText": { "type": "string", "default": "View All Products" },
+		"buttonUrl": { "type": "string", "default": "#products" },
+		"cardOneIcon": { "type": "string", "default": "🌳" },
+		"cardOneTitle": { "type": "string", "default": "Raw Teak Supply" },
+		"cardOneText": { "type": "string", "default": "Premium raw teak and timber planks sourced sustainably for construction, joinery, and interior finishing projects." },
+		"cardTwoIcon": { "type": "string", "default": "⚙️" },
+		"cardTwoTitle": { "type": "string", "default": "Custom Milling & Cutting" },
+		"cardTwoText": { "type": "string", "default": "Precision wood cutting and milling services tailored to your exact dimensions and project requirements." },
+		"cardThreeIcon": { "type": "string", "default": "🏠" },
+		"cardThreeTitle": { "type": "string", "default": "Decking & Flooring" },
+		"cardThreeText": { "type": "string", "default": "Indoor and outdoor decking solutions including solid teak E4E, T&G profiles, and WPC composite systems." },
+		"cardFourIcon": { "type": "string", "default": "🤝" },
+		"cardFourTitle": { "type": "string", "default": "B2B Wholesale" },
+		"cardFourText": { "type": "string", "default": "Dedicated wholesale services for interior designers, contractors, and trade professionals with volume pricing." },
+		"cardFiveIcon": { "type": "string", "default": "📋" },
+		"cardFiveTitle": { "type": "string", "default": "Wood Grading" },
+		"cardFiveText": { "type": "string", "default": "Expert wood grading expertise helping you select the right material grade for every application and budget." },
+		"cardSixIcon": { "type": "string", "default": "🚚" },
+		"cardSixTitle": { "type": "string", "default": "Regional Distribution" },
+		"cardSixText": { "type": "string", "default": "Reliable supply and distribution across Singapore and regional markets from our Sungei Kadut base." }
+	},
+	"textdomain": "ai-zippy-child",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

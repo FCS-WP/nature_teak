@@ -1,0 +1,94 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ai-zippy-child/shop-hero",
+  "version": "1.0.0",
+  "title": "Shop Hero",
+  "category": "ai-zippy",
+  "icon": "store",
+  "description": "Shop page hero with title, subtitle, CTA, and category filter pills.",
+  "keywords": [
+    "shop",
+    "hero",
+    "products",
+    "filters"
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "title": {
+      "type": "string",
+      "default": "Our Products"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Premium teak, WPC composite decking, handrails & accessories"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Request B2B Pricing"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "/contact-us"
+    },
+    "filterOneLabel": {
+      "type": "string",
+      "default": "All Products"
+    },
+    "filterOneUrl": {
+      "type": "string",
+      "default": "#all-products"
+    },
+    "filterTwoLabel": {
+      "type": "string",
+      "default": "Solid Teak"
+    },
+    "filterTwoUrl": {
+      "type": "string",
+      "default": "#solid-teak"
+    },
+    "filterThreeLabel": {
+      "type": "string",
+      "default": "WPC Composite"
+    },
+    "filterThreeUrl": {
+      "type": "string",
+      "default": "#wpc-composite"
+    },
+    "filterFourLabel": {
+      "type": "string",
+      "default": "Handrails"
+    },
+    "filterFourUrl": {
+      "type": "string",
+      "default": "#handrails"
+    },
+    "filterFiveLabel": {
+      "type": "string",
+      "default": "Accessories"
+    },
+    "filterFiveUrl": {
+      "type": "string",
+      "default": "#accessories"
+    }
+  },
+  "textdomain": "ai-zippy-child",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

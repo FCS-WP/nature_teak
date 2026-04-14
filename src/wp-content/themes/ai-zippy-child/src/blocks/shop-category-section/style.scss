@@ -1,0 +1,213 @@
+.wp-block-ai-zippy-child-shop-category-section {
+  --scs-cream: var(--wp--preset--color--cream, #faf8f4);
+  --scs-rust: var(--wp--preset--color--rust, #c17a54);
+  --scs-border: var(--wp--preset--color--border, #ddd5c8);
+  --scs-bark: var(--wp--preset--color--bark, #3d2b1f);
+  --scs-bark-mid: var(--wp--preset--color--bark-mid, #6b4c38);
+  --scs-muted: var(--wp--preset--color--text-muted, #8b7060);
+  --scs-serif: var(--wp--preset--font-family--playfair-display, "Playfair Display", sans-serif);
+  --scs-sans: var(--wp--preset--font-family--dm-sans, "DM Sans", sans-serif);
+
+  padding: 56px 7%;
+  background: var(--scs-cream);
+  font-family: var(--scs-sans);
+
+  .scs__title {
+    margin: 0 0 8px;
+    color: var(--scs-bark);
+    font-family: var(--scs-serif);
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .scs__subtitle {
+    margin: 0 0 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--scs-border);
+    color: var(--scs-muted);
+    font-size: 13px;
+  }
+
+  .scs__grid {
+    display: grid;
+    gap: 2px;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--scs-border);
+    margin-bottom: 32px;
+  }
+
+  .scs__card,
+  .scs__promo {
+    position: relative;
+    overflow: hidden;
+    background: white;
+  }
+
+  .scs__card {
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover {
+      z-index: 2;
+      transform: scale(1.015);
+      box-shadow: 0 8px 32px rgba(61, 43, 31, 0.12);
+    }
+  }
+
+  .scs__image-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scs__image,
+  .scs__placeholder {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .scs__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--scs-border) 45%, white);
+    color: var(--scs-muted);
+  }
+
+  .scs__card:hover .scs__image {
+    transform: scale(1.06);
+  }
+
+  .scs__image {
+    transition: transform 0.5s;
+  }
+
+  .scs__enquire {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+    background: var(--scs-bark);
+    color: var(--scs-cream);
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 11px;
+  }
+
+  .scs__card:hover .scs__enquire {
+    transform: translateY(0);
+  }
+
+  .scs__info {
+    padding: 18px 20px 20px;
+  }
+
+  .scs__cat {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--scs-rust);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .scs__name {
+    margin: 0 0 6px;
+    color: var(--scs-bark);
+    font-family: var(--scs-serif);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .scs__spec {
+    margin: 0;
+    color: var(--scs-muted);
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .scs__promo {
+    display: flex;
+    min-height: 100%;
+    padding: 32px 24px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .scs__promo-icon {
+    margin: 0 0 14px;
+    font-size: 24px;
+  }
+
+  .scs__promo-title {
+    margin: 0 0 10px;
+    color: var(--scs-bark);
+    font-family: var(--scs-serif);
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .scs__promo-text {
+    margin: 0 0 18px;
+    color: var(--scs-muted);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .scs__promo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    background: var(--scs-bark);
+    color: var(--scs-cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.25s;
+
+    &:hover {
+      background: var(--scs-rust);
+      transform: translateY(-2px);
+    }
+  }
+
+  .scs__banner-wrap {
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .scs__banner {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  @media (max-width: 900px) {
+    .scs__grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .scs__grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}

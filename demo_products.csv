@@ -1,0 +1,18 @@
+ID,Type,SKU,Name,Published,Is featured?,Visibility in catalog,Short description,Description,Date sale price starts,Date sale price ends,Tax status,Tax class,In stock?,Stock,Backorders allowed?,Sold individually?,Weight (kg),Length (cm),Width (cm),Height (cm),Allow customer reviews?,Purchase note,Sale price,Regular price,Categories,Tags,Shipping class,Images,Attribute 1 name,Attribute 1 value(s),Attribute 1 visible,Attribute 1 global
+, simple,ST-001,B Teak Decking E4E,1,0,visible,"Burma Teak decking","Burma Teak - Eased 4 Edges",,,taxable,,1,100,0,0,,,,,1,, ,0,"Solid Teak","teak,burma",,https://yourdomain.com/images/teak-decking.jpg,Material,"Burma Teak",1,1
+, simple,ST-002,B Teak T&G Profile,1,0,visible,"T&G Profile","11mm x 95mm - Tongue & Groove",,,taxable,,1,100,0,0,,,,,1,, ,0,"Solid Teak","teak,tg",,https://yourdomain.com/images/tg-profile.jpg,Size,"11x95mm",1,1
+, simple,ST-003,Indo T&G 38x304.8mm,1,0,visible,"Wide board teak","Indonesian Teak - Wide Board",,,taxable,,1,100,0,0,,,,,1,, ,0,"Solid Teak","teak,indonesia",,https://yourdomain.com/images/indo-wide.jpg,Size,"38x304.8mm",1,1
+, simple,ST-004,Indo / Burma 17x95mm,1,0,visible,"Mixed teak","Mixed Grade - 17mm x 95mm",,,taxable,,1,100,0,0,,,,,1,, ,0,"Solid Teak","teak,mixed",,https://yourdomain.com/images/mixed-teak.jpg,Size,"17x95mm",1,1
+
+, simple,WPC-001,NT500 Honey Teak,1,0,visible,"WPC decking","22 x 142 x 2700mm",,,taxable,,1,100,0,0,,,,,1,, ,0,"WPC Composite Decking","wpc,decking",,https://yourdomain.com/images/honey-teak.jpg,Size,"22x142x2700mm",1,1
+, simple,WPC-002,NT102 Dark Ebony,1,0,visible,"WPC decking","22 x 142 x 2700mm",,,taxable,,1,100,0,0,,,,,1,, ,0,"WPC Composite Decking","wpc,decking",,https://yourdomain.com/images/dark-ebony.jpg,Size,"22x142x2700mm",1,1
+, simple,WPC-003,NT205 Carbon Walnut,1,0,visible,"WPC decking","22 x 142 x 2700mm",,,taxable,,1,100,0,0,,,,,1,, ,0,"WPC Composite Decking","wpc,decking",,https://yourdomain.com/images/carbon-walnut.jpg,Size,"22x142x2700mm",1,1
+, simple,WPC-004,NT105 Silver Grey,1,0,visible,"WPC decking","22 x 142 x 2700mm",,,taxable,,1,100,0,0,,,,,1,, ,0,"WPC Composite Decking","wpc,decking",,https://yourdomain.com/images/silver-grey.jpg,Size,"22x142x2700mm",1,1
+
+, simple,WPCM-001,WPC Antique Matt,1,0,visible,"Matt finish decking","22 x 142 x 2700mm",,,taxable,,1,100,0,0,,,,,1,, ,0,"WPC Matt Series","wpc,matt",,https://yourdomain.com/images/antique-matt.jpg,Size,"22x142x2700mm",1,1
+, simple,WPCM-002,WPC Teak Matt,1,0,visible,"Matt finish decking","22 x 142 x 2700mm",,,taxable,,1,100,0,0,,,,,1,, ,0,"WPC Matt Series","wpc,matt",,https://yourdomain.com/images/teak-matt.jpg,Size,"22x142x2700mm",1,1
+, simple,WPCM-003,WPC Walnut Matt,1,0,visible,"Matt finish decking","22 x 142 x 2700mm",,,taxable,,1,100,0,0,,,,,1,, ,0,"WPC Matt Series","wpc,matt",,https://yourdomain.com/images/walnut-matt.jpg,Size,"22x142x2700mm",1,1
+, simple,WPC-005,NT500 Series Profile,1,0,visible,"Profile product","Available in colours",,,taxable,,1,100,0,0,,,,,1,, ,0,"WPC Composite Decking","profile",,https://yourdomain.com/images/profile.jpg,Type,"Profile",1,1
+
+, simple,HR-001,B Teak Handrail - DIA,1,0,visible,"Round handrail","Burma Teak - Round Profile",,,taxable,,1,100,0,0,,,,,1,, ,0,"Teak Handrails","handrail",,https://yourdomain.com/images/dia.jpg,Size,"40x40mm|45x45mm",1,1
+, simple,HR-002,B Teak Handrail - OVAL,1,0,visible,"Oval handrail","Burma Teak - Oval Profile",,,taxable,,1,100,0,0,,,,,1,, ,0,"Teak Handrails","handrail",,https://yourdomain.com/images/oval.jpg,Size,"40x60mm|40x70mm|45x60mm",1,1

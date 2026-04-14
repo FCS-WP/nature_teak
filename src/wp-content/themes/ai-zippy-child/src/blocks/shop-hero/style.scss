@@ -1,0 +1,91 @@
+.wp-block-ai-zippy-child-shop-hero {
+  --sph-warm: var(--wp--preset--color--warm-white, #f4f0e8);
+  --sph-cream: var(--wp--preset--color--cream, #faf8f4);
+  --sph-rust: var(--wp--preset--color--rust, #c17a54);
+  --sph-border: var(--wp--preset--color--border, #ddd5c8);
+  --sph-bark: var(--wp--preset--color--bark, #3d2b1f);
+  --sph-bark-mid: var(--wp--preset--color--bark-mid, #6b4c38);
+  --sph-muted: var(--wp--preset--color--text-muted, #8b7060);
+  --sph-serif: var(--wp--preset--font-family--playfair-display, "Playfair Display", sans-serif);
+  --sph-sans: var(--wp--preset--font-family--dm-sans, "DM Sans", sans-serif);
+
+  background: var(--sph-warm);
+  border-bottom: 1px solid var(--sph-border);
+  padding-top: 64px;
+  font-family: var(--sph-sans);
+
+  .sph__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding: 0 7% 48px;
+  }
+
+  .sph__title {
+    margin: 0;
+    color: var(--sph-bark);
+    font-family: var(--sph-serif);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+  }
+
+  .sph__subtitle {
+    margin: 8px 0 0;
+    color: var(--sph-bark-mid);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .sph__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 24px;
+    background: var(--sph-bark);
+    color: var(--sph-cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.25s;
+
+    &:hover {
+      background: var(--sph-rust);
+      transform: translateY(-2px);
+    }
+  }
+
+  .sph__filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 0 7% 24px;
+  }
+
+  .sph__filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1.5px solid var(--sph-border);
+    background: white;
+    color: var(--sph-bark-mid);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+
+    &:hover,
+    &.is-active {
+      background: var(--sph-rust);
+      border-color: var(--sph-rust);
+      color: white;
+    }
+  }
+}

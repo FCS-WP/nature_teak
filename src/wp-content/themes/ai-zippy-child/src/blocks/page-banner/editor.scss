@@ -1,0 +1,7 @@
+.wp-block-ai-zippy-child-page-banner {
+  .block-editor-rich-text__editable:focus {
+    outline: 2px solid color-mix(in srgb, var(--wp--preset--color--rust, #c17a54) 30%, transparent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

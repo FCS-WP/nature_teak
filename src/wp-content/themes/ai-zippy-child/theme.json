@@ -2,7 +2,234 @@
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
 	"settings": {
-		"appearanceTools": true
+		"appearanceTools": true,
+		"color": {
+			"palette": [
+				{
+					"slug": "rust",
+					"color": "#C17A54",
+					"name": "Rust"
+				},
+				{
+					"slug": "rust-dark",
+					"color": "#A0603D",
+					"name": "Rust Dark"
+				},
+				{
+					"slug": "sage",
+					"color": "#7A9B5C",
+					"name": "Sage"
+				},
+				{
+					"slug": "sage-light",
+					"color": "#C8DEBB",
+					"name": "Sage Light"
+				},
+				{
+					"slug": "tan",
+					"color": "#C9A96E",
+					"name": "Tan"
+				},
+				{
+					"slug": "tan-light",
+					"color": "#E8D5B0",
+					"name": "Tan Light"
+				},
+				{
+					"slug": "cream",
+					"color": "#FAF8F4",
+					"name": "Cream"
+				},
+				{
+					"slug": "warm-white",
+					"color": "#F4F0E8",
+					"name": "Warm White"
+				},
+				{
+					"slug": "linen",
+					"color": "#EDE8DC",
+					"name": "Linen"
+				},
+				{
+					"slug": "bark",
+					"color": "#3D2B1F",
+					"name": "Bark"
+				},
+				{
+					"slug": "bark-mid",
+					"color": "#6B4C38",
+					"name": "Bark Mid"
+				},
+				{
+					"slug": "bark-light",
+					"color": "#9B7460",
+					"name": "Bark Light"
+				},
+				{
+					"slug": "text-muted",
+					"color": "#8B7060",
+					"name": "Text Muted"
+				},
+				{
+					"slug": "border",
+					"color": "#DDD5C8",
+					"name": "Border"
+				},
+				{
+					"slug": "white",
+					"color": "#FFFFFF",
+					"name": "White"
+				}
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "\"DM Sans\", sans-serif",
+					"slug": "dm-sans",
+					"name": "DM Sans",
+					"fontFace": [
+						{
+							"fontFamily": "DM Sans",
+							"fontStyle": "normal",
+							"fontWeight": "300",
+							"src": [
+								"file:./src/fonts/dm-sans-300.ttf"
+							]
+						},
+						{
+							"fontFamily": "DM Sans",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./src/fonts/dm-sans-400.ttf"
+							]
+						},
+						{
+							"fontFamily": "DM Sans",
+							"fontStyle": "normal",
+							"fontWeight": "500",
+							"src": [
+								"file:./src/fonts/dm-sans-500.ttf"
+							]
+						},
+						{
+							"fontFamily": "DM Sans",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"src": [
+								"file:./src/fonts/dm-sans-600.ttf"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "\"Playfair Display\", sans-serif",
+					"slug": "playfair-display",
+					"name": "Playfair Display",
+					"fontFace": [
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": [
+								"file:./src/fonts/playfair-display-400.ttf"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"src": [
+								"file:./src/fonts/playfair-display-600.ttf"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": [
+								"file:./src/fonts/playfair-display-700.ttf"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "italic",
+							"fontWeight": "400",
+							"src": [
+								"file:./src/fonts/playfair-display-400-italic.ttf"
+							]
+						},
+						{
+							"fontFamily": "Playfair Display",
+							"fontStyle": "italic",
+							"fontWeight": "600",
+							"src": [
+								"file:./src/fonts/playfair-display-600-italic.ttf"
+							]
+						}
+					]
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "x-small",
+					"size": "0.6875rem",
+					"name": "Extra Small"
+				},
+				{
+					"slug": "small",
+					"size": "0.75rem",
+					"name": "Small"
+				},
+				{
+					"slug": "medium",
+					"size": "1rem",
+					"name": "Medium"
+				},
+				{
+					"slug": "large",
+					"size": "1.5rem",
+					"name": "Large"
+				},
+				{
+					"slug": "x-large",
+					"size": "2.875rem",
+					"name": "Extra Large"
+				},
+				{
+					"slug": "xx-large",
+					"size": "4.375rem",
+					"name": "2X Large"
+				},
+				{
+					"slug": "hero-stat",
+					"size": "2rem",
+					"name": "Hero Stat"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "1200px",
+			"wideSize": "1410px"
+		}
 	},
-	"styles": {}
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--cream)",
+			"text": "var(--wp--preset--color--bark)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--dm-sans)",
+			"fontSize": "var(--wp--preset--font-size--medium)",
+			"lineHeight": "1.6"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--playfair-display)"
+				}
+			}
+		}
+	}
 }

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ai-zippy-child/home-hero",
+  "version": "1.0.0",
+  "title": "Home Hero",
+  "category": "ai-zippy",
+  "icon": "cover-image",
+  "description": "Homepage hero section with split layout, CTA buttons, stats, and 2x2 material collage.",
+  "keywords": [
+    "hero",
+    "homepage",
+    "timber",
+    "intro"
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "eyebrow": {
+      "type": "string",
+      "default": "Singapore's Timber Specialists"
+    },
+    "heading": {
+      "type": "string",
+      "default": "Premium Teak\n& Timber Supply"
+    },
+    "description": {
+      "type": "string",
+      "default": "Sourcing and supplying high-quality, sustainable teak wood for contractors, interior designers, and builders across Singapore and the region. Precision milling. Lasting results."
+    },
+    "primaryBtnText": {
+      "type": "string",
+      "default": "Browse Products"
+    },
+    "primaryBtnUrl": {
+      "type": "string",
+      "default": "#products"
+    },
+    "secondaryBtnText": {
+      "type": "string",
+      "default": "Get a Quote"
+    },
+    "secondaryBtnUrl": {
+      "type": "string",
+      "default": "#quote"
+    },
+    "statOneValue": {
+      "type": "string",
+      "default": "20+"
+    },
+    "statOneLabel": {
+      "type": "string",
+      "default": "Years Experience"
+    },
+    "statTwoValue": {
+      "type": "string",
+      "default": "500+"
+    },
+    "statTwoLabel": {
+      "type": "string",
+      "default": "Projects Completed"
+    },
+    "statThreeValue": {
+      "type": "string",
+      "default": "B2B"
+    },
+    "statThreeLabel": {
+      "type": "string",
+      "default": "Trade Specialists"
+    },
+    "tileTeakId": {
+      "type": "number",
+      "default": 0
+    },
+    "tileTeakUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "tileWillowId": {
+      "type": "number",
+      "default": 0
+    },
+    "tileWillowUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "tileWalnutId": {
+      "type": "number",
+      "default": 0
+    },
+    "tileWalnutUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "tileMapleId": {
+      "type": "number",
+      "default": 0
+    },
+    "tileMapleUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "labelTeak": {
+      "type": "string",
+      "default": "teak"
+    },
+    "labelWillow": {
+      "type": "string",
+      "default": "willow"
+    },
+    "labelWalnut": {
+      "type": "string",
+      "default": "walnut"
+    },
+    "labelMaple": {
+      "type": "string",
+      "default": "maple"
+    },
+    "locationTitle": {
+      "type": "string",
+      "default": "Sungei Kadut"
+    },
+    "locationSubtitle": {
+      "type": "string",
+      "default": "Timber Hub · Singapore"
+    }
+  },
+  "textdomain": "ai-zippy-child",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

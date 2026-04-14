@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy-child/home-cta",
+	"version": "1.0.0",
+	"title": "Home CTA",
+	"category": "ai-zippy",
+	"icon": "megaphone",
+	"description": "Green call-to-action strip for the homepage.",
+	"keywords": ["cta", "banner", "contact"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"align": { "type": "string", "default": "full" },
+		"heading": { "type": "string", "default": "Ready to source your next timber order?" },
+		"description": { "type": "string", "default": "B2B enquiries welcome. Trade pricing available for contractors and designers." },
+		"buttonText": { "type": "string", "default": "Contact Us Today" },
+		"buttonUrl": { "type": "string", "default": "#contact" }
+	},
+	"textdomain": "ai-zippy-child",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

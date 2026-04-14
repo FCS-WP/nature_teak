@@ -1,0 +1,29 @@
+.wp-block-ai-zippy-child-home-about {
+  .nta-editor__picker {
+    margin-bottom: 14px;
+  }
+
+  .nta-editor__thumb {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border: 1px solid var(--wp--preset--color--border, #ddd5c8);
+    border-radius: 6px;
+    margin-bottom: 8px;
+
+    &--empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--wp--preset--color--warm-white, #f4f0e8);
+      color: var(--wp--preset--color--text-muted, #8b7060);
+      font-size: 12px;
+    }
+  }
+
+  .block-editor-rich-text__editable:focus {
+    outline: 2px solid color-mix(in srgb, var(--wp--preset--color--rust, #c17a54) 30%, transparent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

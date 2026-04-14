@@ -1,0 +1,124 @@
+.wp-block-ai-zippy-child-home-why {
+  --ntw-bark: var(--wp--preset--color--bark, #3d2b1f);
+  --ntw-tan: var(--wp--preset--color--tan, #c9a96e);
+  --ntw-cream: var(--wp--preset--color--cream, #faf8f4);
+  --ntw-serif: var(--wp--preset--font-family--playfair-display, "Playfair Display", sans-serif);
+  --ntw-sans: var(--wp--preset--font-family--dm-sans, "DM Sans", sans-serif);
+
+  position: relative;
+  overflow: hidden;
+  background: var(--ntw-bark);
+  padding: 96px 7%;
+  font-family: var(--ntw-sans);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(193, 122, 84, 0.12) 0%, transparent 70%);
+  }
+
+  .ntw__eyebrow {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--ntw-tan);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    &::after {
+      content: "";
+      width: 24px;
+      height: 1.5px;
+      background: var(--ntw-tan);
+    }
+  }
+
+  .ntw__title {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 20px;
+    color: white;
+    font-family: var(--ntw-serif);
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .ntw__body {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: rgba(250, 248, 244, 0.6);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.85;
+    max-width: 760px;
+  }
+
+  .ntw__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .ntw__card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    padding: 32px 24px;
+    transition: border-color 0.3s, transform 0.3s;
+
+    &:hover {
+      border-color: var(--ntw-tan);
+      transform: translateY(-4px);
+    }
+  }
+
+  .ntw__num {
+    margin: 0 0 12px;
+    color: var(--ntw-cream);
+    font-family: var(--ntw-serif);
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .ntw__card-title {
+    margin: 0 0 10px;
+    color: var(--ntw-cream);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .ntw__card-text {
+    margin: 0;
+    color: rgba(250, 248, 244, 0.849);
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 900px) {
+    .ntw__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .ntw__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

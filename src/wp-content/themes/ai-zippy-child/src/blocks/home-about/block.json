@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy-child/home-about",
+	"version": "1.0.0",
+	"title": "Home About",
+	"category": "ai-zippy",
+	"icon": "align-pull-right",
+	"description": "Split about section with image, heading, description, and feature list.",
+	"keywords": ["about", "intro", "who we are", "split section"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"align": { "type": "string", "default": "full" },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" },
+		"imageCaption": { "type": "string", "default": "WPC Viva decking\n22mm x 145mm x 2100mm" },
+		"eyebrow": { "type": "string", "default": "Who We Are" },
+		"heading": { "type": "string", "default": "Rooted in Singapore's\nTimber Hub" },
+		"description": {
+			"type": "string",
+			"default": "Nature Teak focuses on sourcing and supplying high-quality, sustainable teak wood that balances natural durability with industrial precision for the local trade. With a deep-rooted presence in Singapore's timber hub, we provide reliable raw materials and customised wood solutions."
+		},
+		"featureOne": { "type": "string", "default": "Ensuring contractors and designers have access to premium timber" },
+		"featureTwo": { "type": "string", "default": "Custom wood cutting and milling to precise specifications" },
+		"featureThree": { "type": "string", "default": "Sustainable sourcing with full wood grading expertise" },
+		"featureFour": { "type": "string", "default": "Regional distribution from Sungei Kadut, Singapore" }
+	},
+	"textdomain": "ai-zippy-child",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

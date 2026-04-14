@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy-child/shop-category-section",
+	"version": "1.0.0",
+	"title": "Shop Category Section",
+	"category": "ai-zippy",
+	"icon": "grid-view",
+	"description": "Category-based shop section with product cards, enquire hover button, optional support card, and optional banner image.",
+	"keywords": ["shop", "category", "products", "woocommerce"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"align": { "type": "string", "default": "full" },
+		"sectionId": { "type": "string", "default": "" },
+		"heading": { "type": "string", "default": "Solid Burma Teak" },
+		"subtitle": { "type": "string", "default": "Premium grade natural teak timber - decking, T&G profiles, and custom cut planks" },
+		"backgroundColor": { "type": "string", "default": "" },
+		"category": { "type": "string", "default": "" },
+		"includeCategories": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		},
+		"excludeCategories": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		},
+		"perPage": { "type": "number", "default": 4 },
+		"columns": { "type": "number", "default": 4 },
+		"enquireText": { "type": "string", "default": "Enquire" },
+		"enquireUrl": { "type": "string", "default": "/contact-us" },
+		"showPromoCard": { "type": "boolean", "default": false },
+		"promoIcon": { "type": "string", "default": "📐" },
+		"promoTitle": { "type": "string", "default": "Custom Profile Cutting Available" },
+		"promoText": { "type": "string", "default": "Contact us for bespoke handrail dimensions" },
+		"promoButtonText": { "type": "string", "default": "Get Custom Quote" },
+		"promoButtonUrl": { "type": "string", "default": "/contact-us" },
+		"bannerImageId": { "type": "number", "default": 0 },
+		"bannerImageUrl": { "type": "string", "default": "" },
+		"bannerAlt": { "type": "string", "default": "" }
+	},
+	"textdomain": "ai-zippy-child",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

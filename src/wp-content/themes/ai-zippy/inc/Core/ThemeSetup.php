@@ -28,6 +28,7 @@ class ThemeSetup
         add_theme_support('editor-styles');
         add_theme_support('woocommerce');
         add_theme_support('responsive-embeds');
+        add_action('wp_enqueue_scripts', 'wp_enqueue_global_styles', 1);
     }
 
     /**

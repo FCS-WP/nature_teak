@@ -1,0 +1,98 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ai-zippy-child/home-why",
+  "version": "1.0.0",
+  "title": "Home Why",
+  "category": "ai-zippy",
+  "icon": "info-outline",
+  "description": "Dark why-us grid section for the homepage.",
+  "keywords": [
+    "why us",
+    "benefits",
+    "trust",
+    "cards"
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "eyebrow": {
+      "type": "string",
+      "default": "Why Nature Teak"
+    },
+    "heading": {
+      "type": "string",
+      "default": "Your Trusted Timber Partner"
+    },
+    "description": {
+      "type": "string",
+      "default": "Built on quality, precision, and reliability - we understand what trade professionals need."
+    },
+    "cardOneNumber": {
+      "type": "string",
+      "default": "01"
+    },
+    "cardOneTitle": {
+      "type": "string",
+      "default": "Authoritative Industry Presence"
+    },
+    "cardOneText": {
+      "type": "string",
+      "default": "Deep roots in Singapore's Sungei Kadut timber district with extensive supplier networks and market knowledge."
+    },
+    "cardTwoNumber": {
+      "type": "string",
+      "default": "02"
+    },
+    "cardTwoTitle": {
+      "type": "string",
+      "default": "Extensive Product Range"
+    },
+    "cardTwoText": {
+      "type": "string",
+      "default": "Comprehensive catalogue from raw teak planks to WPC composites, handrails, T&G profiles, and adhesives."
+    },
+    "cardThreeNumber": {
+      "type": "string",
+      "default": "03"
+    },
+    "cardThreeTitle": {
+      "type": "string",
+      "default": "Custom Fabrication"
+    },
+    "cardThreeText": {
+      "type": "string",
+      "default": "Highlight custom wood milling and cutting as a key selling point - your specs, our precision execution."
+    },
+    "cardFourNumber": {
+      "type": "string",
+      "default": "04"
+    },
+    "cardFourTitle": {
+      "type": "string",
+      "default": "Trade-First Experience"
+    },
+    "cardFourText": {
+      "type": "string",
+      "default": "Seamless B2B enquiry process, mobile-optimised for contractors on-site, with dedicated trade pricing."
+    }
+  },
+  "textdomain": "ai-zippy-child",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

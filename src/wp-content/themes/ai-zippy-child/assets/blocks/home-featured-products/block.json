@@ -1,0 +1,134 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ai-zippy-child/home-featured-products",
+  "version": "1.0.0",
+  "title": "Home Featured Products",
+  "category": "ai-zippy",
+  "icon": "products",
+  "description": "Featured product cards section for the homepage.",
+  "keywords": [
+    "featured",
+    "products",
+    "cards",
+    "shop"
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "eyebrow": {
+      "type": "string",
+      "default": "Featured Products"
+    },
+    "heading": {
+      "type": "string",
+      "default": "Popular Timber Lines"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Shop All"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#shop"
+    },
+    "cardOneImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "cardOneImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "cardOneCategory": {
+      "type": "string",
+      "default": "Solid Teak"
+    },
+    "cardOneTitle": {
+      "type": "string",
+      "default": "B Teak Decking E4E"
+    },
+    "cardOneSpec": {
+      "type": "string",
+      "default": "Premium Burma Teak · Eased 4 Edges"
+    },
+    "cardTwoImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "cardTwoImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "cardTwoCategory": {
+      "type": "string",
+      "default": "WPC Composite"
+    },
+    "cardTwoTitle": {
+      "type": "string",
+      "default": "VIVA DECK NT500 Honey Teak"
+    },
+    "cardTwoSpec": {
+      "type": "string",
+      "default": "WPC · 22x142x2700mm"
+    },
+    "cardThreeImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "cardThreeImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "cardThreeCategory": {
+      "type": "string",
+      "default": "WPC Composite"
+    },
+    "cardThreeTitle": {
+      "type": "string",
+      "default": "VIVA DECK NT102 Dark Ebony"
+    },
+    "cardThreeSpec": {
+      "type": "string",
+      "default": "WPC · 22x142x2700mm"
+    },
+    "cardFourImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "cardFourImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "cardFourCategory": {
+      "type": "string",
+      "default": "Solid Teak"
+    },
+    "cardFourTitle": {
+      "type": "string",
+      "default": "B Teak T&G 111mm × 95mm"
+    },
+    "cardFourSpec": {
+      "type": "string",
+      "default": "Tongue & Groove Profile"
+    }
+  },
+  "textdomain": "ai-zippy-child",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
