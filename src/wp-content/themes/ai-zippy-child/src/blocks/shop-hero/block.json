@@ -22,6 +22,24 @@
 		"subtitle": { "type": "string", "default": "Premium teak, WPC composite decking, handrails & accessories" },
 		"buttonText": { "type": "string", "default": "Request B2B Pricing" },
 		"buttonUrl": { "type": "string", "default": "/contact-us" },
+		"useAutoCategories": { "type": "boolean", "default": true },
+		"showAllProductsFilter": { "type": "boolean", "default": true },
+		"allProductsLabel": { "type": "string", "default": "All Products" },
+		"allProductsUrl": { "type": "string", "default": "/shop" },
+		"includeCategories": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		},
+		"excludeCategories": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		},
 		"filterOneLabel": { "type": "string", "default": "All Products" },
 		"filterOneUrl": { "type": "string", "default": "#all-products" },
 		"filterTwoLabel": { "type": "string", "default": "Solid Teak" },

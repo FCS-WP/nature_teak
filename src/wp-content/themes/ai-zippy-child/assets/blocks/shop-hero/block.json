@@ -45,6 +45,36 @@
       "type": "string",
       "default": "/contact-us"
     },
+    "useAutoCategories": {
+      "type": "boolean",
+      "default": true
+    },
+    "showAllProductsFilter": {
+      "type": "boolean",
+      "default": true
+    },
+    "allProductsLabel": {
+      "type": "string",
+      "default": "All Products"
+    },
+    "allProductsUrl": {
+      "type": "string",
+      "default": "/shop"
+    },
+    "includeCategories": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "excludeCategories": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
     "filterOneLabel": {
       "type": "string",
       "default": "All Products"

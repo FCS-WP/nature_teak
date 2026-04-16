@@ -22,7 +22,7 @@
   }
 
   .cts__form-col {
-    padding: 0 ;
+    padding: 0 7% 0 0;
   }
   
   .cts__info-col {
@@ -117,11 +117,41 @@
 
   .cts__map-card {
     margin-top: 24px;
-    padding: 34px 28px;
     border: 1px solid var(--cts-border);
     border-radius: 3px;
     text-align: center;
     background: color-mix(in srgb, var(--cts-panel) 94%, white);
+  }
+
+  .cts__map-embed,
+  .cts__map-embed iframe {
+    width: 100%;
+  }
+
+  .cts__map-embed iframe {
+    min-height: 280px;
+    border: 0;
+    display: block;
+  }
+
+  .cts__map-embed-placeholder {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 24px;
+    border: 1px dashed var(--cts-border);
+    color: var(--cts-muted);
+
+    p {
+      margin: 0;
+    }
+
+    p + p {
+      margin-top: 6px;
+      font-size: 13px;
+    }
   }
 
   .cts__map-image {
@@ -259,7 +289,6 @@
     select,
     textarea {
       width: 100%;
-      min-height: 46px;
       padding: 12px 14px;
       border: 1px solid var(--cts-border);
       border-radius: 0;
@@ -280,7 +309,6 @@
     .frm_button_submit,
     .frm_submit button {
       width: 100%;
-      min-height: 46px;
       padding: 12px 18px;
       border: none;
       border-radius: 2px;

@@ -6,6 +6,7 @@ $section_id       = sanitize_title($attributes['sectionId'] ?? '');
 $heading          = esc_html($attributes['heading'] ?? '');
 $subtitle         = esc_html($attributes['subtitle'] ?? '');
 $background_color = sanitize_hex_color($attributes['backgroundColor'] ?? '');
+$use_current_category = !empty($attributes['useCurrentCategory']);
 $category         = sanitize_text_field($attributes['category'] ?? '');
 $include_categories = array_values(
     array_unique(
@@ -47,6 +48,20 @@ $args = [
     'order'  => 'ASC',
     'orderby'=> 'menu_order',
 ];
+
+$queried_term = null;
+if ($use_current_category && function_exists('get_queried_object')) {
+    $queried_term = get_queried_object();
+
+    if (
+        $queried_term instanceof \WP_Term &&
+        isset($queried_term->taxonomy) &&
+        $queried_term->taxonomy === 'product_cat' &&
+        !empty($queried_term->slug)
+    ) {
+        $include_categories = [$queried_term->slug];
+    }
+}
 
 if (empty($include_categories) && $category !== '') {
     $include_categories = [$category];

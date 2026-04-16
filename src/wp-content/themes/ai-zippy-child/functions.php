@@ -10,23 +10,51 @@
 defined('ABSPATH') || exit;
 
 /**
+ * Load all child theme hook files from inc/hooks.
+ */
+function ai_zippy_child_load_hook_files(): void
+{
+    $hooks_dir = get_stylesheet_directory() . '/inc/hooks';
+
+    if (!is_dir($hooks_dir)) {
+        return;
+    }
+
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($hooks_dir, FilesystemIterator::SKIP_DOTS)
+    );
+
+    foreach ($iterator as $file) {
+        if (!$file->isFile() || $file->getExtension() !== 'php') {
+            continue;
+        }
+
+        require_once $file->getPathname();
+    }
+}
+
+ai_zippy_child_load_hook_files();
+
+/**
  * Enqueue child theme styles after parent.
  */
 function ai_zippy_child_enqueue_assets(): void
 {
-    // Vite child entry outputs css/child-style.css (fallback to css/style.css).
+    // Vite outputs child-style.css into the parent theme dist folder.
     $child_css_rel = '/assets/dist/css/child-style.css';
-    $child_css_abs = get_stylesheet_directory() . $child_css_rel;
+    $child_css_abs = get_template_directory() . $child_css_rel;
+    $child_css_uri = get_template_directory_uri() . $child_css_rel;
 
     if (!file_exists($child_css_abs)) {
         $child_css_rel = '/assets/dist/css/style.css';
-        $child_css_abs = get_stylesheet_directory() . $child_css_rel;
+        $child_css_abs = get_template_directory() . $child_css_rel;
+        $child_css_uri = get_template_directory_uri() . $child_css_rel;
     }
 
     if (file_exists($child_css_abs)) {
         wp_enqueue_style(
             'ai-zippy-child-style',
-            get_stylesheet_directory_uri() . $child_css_rel,
+            $child_css_uri,
             ['ai-zippy-theme-css-0'],
             filemtime($child_css_abs)
         );

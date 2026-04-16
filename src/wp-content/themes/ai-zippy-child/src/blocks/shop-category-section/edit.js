@@ -173,6 +173,12 @@ export default function Edit({ attributes, setAttributes }) {
 						value={attributes.sectionId}
 						onChange={(value) => setAttributes({ sectionId: value })}
 					/>
+					<ToggleControl
+						label="Use Current Product Category Archive"
+						checked={!!attributes.useCurrentCategory}
+						onChange={(value) => setAttributes({ useCurrentCategory: value })}
+						help="Use the currently viewed product category automatically. Useful in taxonomy templates."
+					/>
 					<FormTokenField
 						label="Include Categories"
 						value={includeCategories.map((slug) => getCategoryLabel(slug, categoryMap))}
@@ -184,6 +190,7 @@ export default function Edit({ attributes, setAttributes }) {
 							})
 						}
 						help="Only products in these categories will be shown. Leave empty to allow all categories."
+						disabled={!!attributes.useCurrentCategory}
 					/>
 					<FormTokenField
 						label="Exclude Categories"
@@ -342,6 +349,11 @@ export default function Edit({ attributes, setAttributes }) {
 
 				{includeCategories.length > 0 || excludeCategories.length > 0 ? (
 					<div className="scs-editor__filters">
+						{attributes.useCurrentCategory ? (
+							<span className="scs-editor__filter-badge">
+								{__("Archive:", "ai-zippy-child")} {__("Current product category", "ai-zippy-child")}
+							</span>
+						) : null}
 						{includeCategories.length > 0 ? (
 							<span className="scs-editor__filter-badge">
 								{__("Include:", "ai-zippy-child")}{" "}

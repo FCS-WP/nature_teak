@@ -84,6 +84,12 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 
 				<PanelBody title="Map Card Image" initialOpen={false}>
+					<TextareaControl
+						label="Map Embed HTML"
+						value={attributes.mapEmbedHtml}
+						onChange={(value) => setAttributes({ mapEmbedHtml: value })}
+						help="Paste Google Maps embed HTML here. When set, it will replace the image/text map card on the frontend."
+					/>
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={(media) =>
@@ -217,30 +223,39 @@ export default function Edit({ attributes, setAttributes }) {
 								/>
 							</div>
 							<div className="cts__map-card">
-								{attributes.mapImageUrl ? (
-									<img src={attributes.mapImageUrl} alt="" className="cts__map-image" />
-								) : null}
-								<RichText
-									tagName="p"
-									className="cts__map-title"
-									value={attributes.mapTitle}
-									onChange={(value) => setAttributes({ mapTitle: value })}
-									placeholder="Sungei Kadut Timber Hub"
-								/>
-								<RichText
-									tagName="p"
-									className="cts__map-subtitle"
-									value={attributes.mapSubtitle}
-									onChange={(value) => setAttributes({ mapSubtitle: value })}
-									placeholder="Singapore"
-								/>
-								<RichText
-									tagName="span"
-									className="cts__map-link"
-									value={attributes.mapLinkText}
-									onChange={(value) => setAttributes({ mapLinkText: value })}
-									placeholder="Open in Google Maps"
-								/>
+								{attributes.mapEmbedHtml ? (
+									<div className="cts__map-embed-placeholder">
+										<p>Embedded map HTML configured.</p>
+										<p>The live embed will render on the frontend.</p>
+									</div>
+								) : (
+									<>
+										{attributes.mapImageUrl ? (
+											<img src={attributes.mapImageUrl} alt="" className="cts__map-image" />
+										) : null}
+										<RichText
+											tagName="p"
+											className="cts__map-title"
+											value={attributes.mapTitle}
+											onChange={(value) => setAttributes({ mapTitle: value })}
+											placeholder="Sungei Kadut Timber Hub"
+										/>
+										<RichText
+											tagName="p"
+											className="cts__map-subtitle"
+											value={attributes.mapSubtitle}
+											onChange={(value) => setAttributes({ mapSubtitle: value })}
+											placeholder="Singapore"
+										/>
+										<RichText
+											tagName="span"
+											className="cts__map-link"
+											value={attributes.mapLinkText}
+											onChange={(value) => setAttributes({ mapLinkText: value })}
+											placeholder="Open in Google Maps"
+										/>
+									</>
+								)}
 							</div>
 						</div>
 
