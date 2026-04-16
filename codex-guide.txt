@@ -1,50 +1,78 @@
-AI ZIPPY CHILD THEME - BLOCK WORKFLOW GUIDE
+AI ZIPPY CHILD THEME - AI HANDOFF AND BLOCK WORKFLOW GUIDE
 
 Purpose
-Use this guide when asking another AI (ChatGPT web, Claude web, etc.) to create or update homepage sections as reusable Gutenberg blocks for this project.
+Use this guide when another AI assistant needs to work on this WordPress project or a similar AI Zippy child-theme project. It summarizes the conventions used in this chat so future work stays consistent.
 
-Project rule
-Do not build page sections directly in templates like front-page.html.
-Create reusable custom blocks for the child theme so they can be inserted anywhere in the WordPress editor.
+Core principle
+Do not hard-code page sections directly into templates unless the user explicitly asks for a template-only change.
+Create reusable Gutenberg blocks in the child theme, make user-facing content editable, render frontend markup with PHP, and rebuild the child block assets.
 
-Current architecture
+Project structure
+
+Repository root:
+- package.json
+- codex-guide.txt
+- src/wp-content/themes/ai-zippy
+- src/wp-content/themes/ai-zippy-child
 
 Parent theme:
 - src/wp-content/themes/ai-zippy
-- Contains reference blocks such as:
+- Use it as a reference only.
+- Do not edit parent theme files unless the user explicitly asks.
+- Parent reference blocks include:
   - src/wp-content/themes/ai-zippy/src/blocks/brand-intro
   - src/wp-content/themes/ai-zippy/src/blocks/hero-section
   - src/wp-content/themes/ai-zippy/src/blocks/product-showcase
 
 Child theme:
 - src/wp-content/themes/ai-zippy-child
-- This is where new custom page-section blocks should be created.
-- Child blocks are source files in:
+- All project-specific work should normally happen here.
+- Child block source files live in:
   - src/wp-content/themes/ai-zippy-child/src/blocks/<block-slug>/
-- Built files are generated in:
+- Built block files are generated in:
   - src/wp-content/themes/ai-zippy-child/assets/blocks/<block-slug>/
-
-Block registration
-Child blocks are auto-registered by:
-- src/wp-content/themes/ai-zippy-child/functions.php
+- Do not edit built files directly. Edit source files and rebuild.
 
 Build commands
-- npm run build:child-blocks
-- npm run build
+- Build child blocks only:
+  - npm run build:child-blocks
+- Build everything:
+  - npm run build
+- Dev watcher:
+  - npm run dev
 
-Theme layout behavior
+Child theme registration and support
+- Child theme setup is in:
+  - src/wp-content/themes/ai-zippy-child/functions.php
+- Child blocks auto-register from:
+  - src/wp-content/themes/ai-zippy-child/assets/blocks
+- Hook files auto-load from:
+  - src/wp-content/themes/ai-zippy-child/inc/hooks
+- Classic WordPress menus are enabled in the child theme.
+- Registered menu locations:
+  - primary
+  - footer
+- Custom REST endpoints expose menus to custom editor blocks:
+  - /wp-json/ai-zippy-child/v1/menus
+  - /wp-json/ai-zippy-child/v1/menus/{id}/items
+
+Theme layout and templates
 - Child theme layout settings live in:
   - src/wp-content/themes/ai-zippy-child/theme.json
 - Current layout:
   - contentSize: 1200px
   - wideSize: 1410px
-- Child page template override:
+- Full-width behavior depends on child template overrides.
+- Important child templates:
   - src/wp-content/themes/ai-zippy-child/templates/page.html
-- This override allows full-width blocks to actually span full width.
+  - src/wp-content/themes/ai-zippy-child/templates/archive-product.html
+  - src/wp-content/themes/ai-zippy-child/templates/taxonomy-product_cat.html
+- Child header part:
+  - src/wp-content/themes/ai-zippy-child/parts/header.html
+- The header part uses the custom Site Header block.
 
-How every new block should be built
-Follow the same folder structure as brand-intro.
-Each block should include:
+Standard block folder structure
+Every new child block should usually include:
 - block.json
 - index.js
 - edit.js
@@ -52,111 +80,220 @@ Each block should include:
 - render.php
 - style.scss
 - editor.scss
+- view.js only when frontend JavaScript is needed
 
-Implementation rules
-1. Build blocks only in the child theme, not the parent theme.
-2. Use dynamic rendering:
-   - save.js should return null.
-   - render.php outputs the frontend markup.
-3. Follow the parent block style and conventions.
-4. Use safe escaping and sanitization in PHP:
+Dynamic block rules
+1. Use dynamic rendering for custom sections.
+2. save.js should return null.
+3. render.php outputs frontend markup.
+4. Use safe escaping in PHP:
    - esc_html
    - esc_url
    - esc_attr
-   - wp_kses_post only when needed
-5. Keep class naming consistent and block-scoped.
-6. Put editor-only styling in editor.scss and shared/frontend styling in style.scss.
-7. Use InspectorControls for settings like images, URLs, labels, toggles, colors, and section options.
-8. Use RichText for editable text content in the block canvas where appropriate.
-9. Support alignments in block.json:
+   - sanitize_hex_color
+   - wp_kses_post only for controlled rich HTML
+5. Keep class names block-scoped.
+6. Put frontend/shared styles in style.scss.
+7. Put editor-only styles in editor.scss.
+8. Use InspectorControls for settings such as images, URLs, labels, colors, toggles, limits, and filters.
+9. Use RichText for inline editable text where it improves editor usability.
+10. Support alignments in block.json:
    - "align": ["wide", "full"]
-10. If the block should insert as full width by default, include:
+11. If full width should be default, add this attribute:
    - "align": { "type": "string", "default": "full" }
-11. Boxed mode should still be available by switching alignment to None in the editor toolbar.
-12. Do not create page template markup for individual sections unless explicitly requested.
+12. Keep blocks reusable and insertable anywhere.
 
-Current example block
-Reference child block already created:
-- src/wp-content/themes/ai-zippy-child/src/blocks/home-hero
+Block index.js pattern
+Use the WordPress block build pattern:
+- import metadata from ./block.json
+- import Edit from ./edit
+- import save from ./save
+- import ./style.scss
+- import ./editor.scss
+- registerBlockType(metadata.name, { edit: Edit, save })
 
-This is the current example of the expected child-block pattern.
+Example child blocks in this project
+- home-hero
+- home-about
+- home-services
+- home-why
+- home-ticker
+- home-cta
+- home-featured-products
+- page-banner
+- contact-section
+- shop-hero
+- shop-category-section
+- site-header
 
-Recommended workflow for another AI
-When given a mockup for a section:
-1. Choose a clear block slug, for example:
-   - home-hero
-   - home-about
-   - home-services
-2. Create the full block folder under:
-   - src/wp-content/themes/ai-zippy-child/src/blocks/<slug>/
-3. Match the mockup visually, but keep the block editor usable.
-4. Add editable attributes for all user-facing content:
-   - headings
-   - text
-   - button labels and URLs
-   - images
-   - badge text
-   - stats
-   - cards
-5. Compile with:
+Site Header block conventions
+- Source:
+  - src/wp-content/themes/ai-zippy-child/src/blocks/site-header
+- Built:
+  - src/wp-content/themes/ai-zippy-child/assets/blocks/site-header
+- It renders the site logo, desktop nav, enquiry button, mobile menu button, and offcanvas menu.
+- On mobile and tablet, show logo and menu button only.
+- Opening the menu button should show offcanvas navigation and the enquiry button.
+- The block supports:
+  - editable logo
+  - selectable WordPress menu
+  - fallback links
+  - editable enquiry button
+  - editable background color
+- In the editor, menu options are loaded from:
+  - /ai-zippy-child/v1/menus
+- Menu items are loaded from:
+  - /ai-zippy-child/v1/menus/{id}/items
+- The frontend uses wp_get_nav_menu_items.
+
+WooCommerce/product block conventions
+- Product archive page template:
+  - src/wp-content/themes/ai-zippy-child/templates/archive-product.html
+- Product category archive template:
+  - src/wp-content/themes/ai-zippy-child/templates/taxonomy-product_cat.html
+- Do not create one template per category unless the user explicitly asks.
+- Product category archives should use a generic taxonomy template.
+- Product cards should reuse existing WooCommerce/product-card output where possible.
+- Shop page and product category archive can share blocks but may need different query context.
+
+Shop Hero block conventions
+- Source:
+  - src/wp-content/themes/ai-zippy-child/src/blocks/shop-hero
+- Purpose:
+  - product archive/category banner
+  - category filter pills
+  - active category styling
+  - request pricing button
+- It can dynamically load product categories.
+- It should support include-category configuration where useful.
+- On product category archives, only change the active category color/state. Keep the archive banner design consistent with the shop archive.
+
+Shop Category Section block conventions
+- Source:
+  - src/wp-content/themes/ai-zippy-child/src/blocks/shop-category-section
+- Purpose:
+  - show product categories and/or products depending on configuration
+- It supports include and exclude category selection.
+- It supports current-category behavior for taxonomy archive pages.
+- Category selectors in the editor should use plain arrays for attribute values, not Map/Set objects.
+- If a selector error says something like "s.get is not a function", check that the component receives the data shape it expects.
+
+Home Featured Products block conventions
+- Source:
+  - src/wp-content/themes/ai-zippy-child/src/blocks/home-featured-products
+- It should load featured WooCommerce products dynamically.
+- If there are not enough featured products, fill the remaining slots with latest products until the configured limit is reached.
+- Avoid duplicate products when combining featured and latest results.
+
+Contact Section block conventions
+- Source:
+  - src/wp-content/themes/ai-zippy-child/src/blocks/contact-section
+- It contains:
+  - enquiry/contact form area
+  - location details
+  - map card
+  - operating hours
+  - trade enquiry list
+  - social/follow links
+- Contact form shortcode or rendered form logic can live in:
+  - src/wp-content/themes/ai-zippy-child/inc/hooks/register_form.php
+- The map card supports pasted Google Maps iframe/embed HTML.
+- Sanitize map embed HTML with a tight wp_kses allowlist.
+- Do not output arbitrary unsanitized HTML.
+
+Page Banner block conventions
+- Source:
+  - src/wp-content/themes/ai-zippy-child/src/blocks/page-banner
+- Use for reusable page hero/banner sections.
+- Make eyebrow, heading, text, alignment, and background color editable when needed.
+
+SCSS conventions
+- Global child SCSS:
+  - src/wp-content/themes/ai-zippy-child/src/scss/style.scss
+- Form partial:
+  - src/wp-content/themes/ai-zippy-child/src/scss/_form.scss
+- Block-specific SCSS belongs inside each block folder.
+- If global SCSS changes do not appear, check the child asset enqueue path in functions.php and rebuild the relevant assets.
+- Block frontend CSS is generated into assets/blocks/<block>/style-index.css.
+- Block editor CSS is generated into assets/blocks/<block>/index.css.
+
+Hooks conventions
+- Put project-specific PHP hook files in:
+  - src/wp-content/themes/ai-zippy-child/inc/hooks
+- The child functions.php loader includes all PHP files from this folder.
+- Use one focused hook file per feature when possible, for example:
+  - register_form.php
+  - zippy_socials.php
+- Do not manually require each hook file if the auto-loader already handles it.
+
+WordPress menu support notes
+- This child theme supports classic menus through register_nav_menus.
+- If Appearance > Menus does not show in the sidebar, try:
+  - /wp-admin/nav-menus.php
+- Header block menu selection depends on the custom REST endpoints listed above.
+- Permissions for menu REST endpoints should be limited to users who can edit theme options.
+
+Media library troubleshooting
+- If MediaUpload or /wp-admin/upload.php fails, inspect the network response and PHP warnings.
+- A warning like this can break media JSON responses:
+  - foreach() argument must be of type array|object, null given in wp-admin/includes/plugin.php
+- This often points to a plugin/theme filter returning null where WordPress expects an array.
+- Search custom code for filters touching plugins, media, upload, REST, or admin screens.
+- Fix the PHP warning first; broken JSON can prevent the media modal from loading.
+
+Implementation workflow for another AI
+1. Read this guide.
+2. Inspect the relevant existing block or template before editing.
+3. Prefer child theme source files over parent theme files.
+4. For a new section, create a reusable block under:
+   - src/wp-content/themes/ai-zippy-child/src/blocks/<slug>
+5. Add editable attributes for all user-facing content.
+6. Use dynamic PHP render with safe escaping.
+7. Add frontend styles in style.scss and editor styles in editor.scss.
+8. If frontend interaction is needed, add view.js and declare it in block.json.
+9. Rebuild with:
    - npm run build:child-blocks
-6. Do not edit built files in assets/blocks directly.
-   Always edit source files in src/blocks and rebuild.
+10. Verify:
+   - PHP files with php -l when changed
+   - build output succeeds
+   - editor behavior matches expected attributes
+   - frontend render works without requiring template-only markup
 
-Token-efficient prompt format
-Use this prompt with another AI:
+Prompt template for another AI
+Use this prompt when asking another AI to create or update a section:
 
 I am working in a WordPress child theme.
-Create a reusable Gutenberg block in the child theme only.
+Please follow codex-guide.txt and create/update a reusable Gutenberg block in the child theme only.
 
 Rules:
-- Follow the same structure as src/wp-content/themes/ai-zippy/src/blocks/brand-intro
-- Create the block in src/wp-content/themes/ai-zippy-child/src/blocks/<slug>/
-- Include block.json, index.js, edit.js, save.js, render.php, style.scss, editor.scss
-- Use dynamic rendering with save.js returning null
-- Use safe escaping in render.php
-- Support alignments wide and full
-- Default alignment should be full unless I say otherwise
-- The block must work directly in the editor and be insertable anywhere
-- Do not create or edit front-page template markup for this section
-- Do not edit built files in assets/blocks directly
-- After code changes, build with npm run build:child-blocks
+- Work in src/wp-content/themes/ai-zippy-child, not the parent theme.
+- Create or edit source files under src/wp-content/themes/ai-zippy-child/src/blocks/<slug>.
+- Do not edit compiled assets/blocks directly.
+- Use dynamic rendering with save.js returning null and render.php outputting the frontend markup.
+- Use safe escaping and sanitization in PHP.
+- Support wide and full alignments unless I say otherwise.
+- Default alignment should be full for full-width sections.
+- Make user-facing content editable through RichText, InspectorControls, MediaUpload, URLInputButton, ColorPalette, toggles, selects, or similar controls.
+- Keep editor styles in editor.scss and frontend/shared styles in style.scss.
+- Rebuild with npm run build:child-blocks after source changes.
 
 Existing project facts:
-- Child blocks auto-register from src/wp-content/themes/ai-zippy-child/assets/blocks
-- Child page template already allows full-width blocks
-- Child theme layout sizes: content 1200px, wide 1410px
-- Example reference block: src/wp-content/themes/ai-zippy-child/src/blocks/home-hero
+- Child blocks auto-register from src/wp-content/themes/ai-zippy-child/assets/blocks.
+- Child templates already support full-width blocks.
+- Child theme layout sizes are content 1200px and wide 1410px.
+- Hook files auto-load from src/wp-content/themes/ai-zippy-child/inc/hooks.
+- WordPress menus are registered as primary and footer.
+- Site Header block can select classic WP menus through custom REST endpoints.
 
-Now create a block for this section based on the mockup I provide.
+Now implement the requested change based on the design/mockup/details I provide.
 
-When to include extra context
-Only include these if needed:
-- exact file paths to mimic
-- whether the section should be full width or boxed by default
-- whether images should be editable from MediaUpload
-- whether buttons are optional
-- whether text should be edited inline or only in sidebar
-
-What not to send unless needed
-To save tokens, do not paste:
-- full contents of package.json
-- full contents of functions.php
-- full contents of large CSS files
-- compiled files in assets/blocks
-
-Instead, summarize the important constraints:
-- child theme only
-- reusable block only
-- brand-intro style file structure
-- dynamic render
-- build child blocks after changes
-
-Expected output from another AI
-The AI should return:
-- source code edits for the new child block
-- any required theme/support updates only if necessary
-- confirmation that the block should be rebuilt with npm run build:child-blocks
+What not to do
+- Do not edit parent theme files unless explicitly requested.
+- Do not edit compiled assets directly.
+- Do not hard-code a reusable page section inside a template.
+- Do not create a one-off product category template unless explicitly requested.
+- Do not output unsanitized user-entered HTML.
+- Do not skip the build step after block source changes.
 
 Short version
-For this project, every homepage section should become a reusable child-theme Gutenberg block with the same source structure as brand-intro, built under src/wp-content/themes/ai-zippy-child/src/blocks, rendered via render.php, and compiled into assets/blocks for editor use.
+For this project, build reusable child-theme Gutenberg blocks under src/wp-content/themes/ai-zippy-child/src/blocks, render them dynamically with PHP, keep content editable in the block editor, rebuild with npm run build:child-blocks, and avoid parent-theme or compiled-asset edits unless explicitly requested.
