@@ -1,0 +1,60 @@
+.wp-block-ai-zippy-child-site-header {
+  .nth-editor__picker {
+    margin-bottom: 14px;
+  }
+
+  .nth-editor__thumb {
+    width: auto;
+    max-width: 240px;
+    max-height: 100px;
+    object-fit: contain;
+    border: 1px solid var(--wp--preset--color--border, #ddd5c8);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background: #fff;
+
+    &--empty {
+      width: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--wp--preset--color--warm-white, #f4f0e8);
+      color: var(--wp--preset--color--text-muted, #8b7060);
+      font-size: 12px;
+    }
+  }
+
+  .nth-editor__link-group {
+    margin-bottom: 18px;
+  }
+
+  .nth__offcanvas-preview {
+    margin: 0 7% 18px;
+    padding: 18px;
+    border: 1px dashed var(--wp--preset--color--border, #ddd5c8);
+    background: color-mix(in srgb, var(--wp--preset--color--warm-white, #f4f0e8) 72%, white);
+  }
+
+  .nth__offcanvas-title {
+    margin: 0 0 14px;
+    color: var(--wp--preset--color--bark, #3d2b1f);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nth__offcanvas-nav {
+    margin-bottom: 16px;
+  }
+
+  .nth__offcanvas-cta {
+    width: auto;
+  }
+
+  .block-editor-rich-text__editable:focus {
+    outline: 2px solid color-mix(in srgb, var(--wp--preset--color--rust, #c17a54) 30%, transparent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

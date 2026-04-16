@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy-child/site-header",
+	"version": "1.0.0",
+	"title": "Site Header",
+	"category": "ai-zippy",
+	"icon": "menu",
+	"description": "Responsive site header with dynamic menu selection and mobile offcanvas navigation.",
+	"keywords": ["header", "navigation", "menu", "offcanvas"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"attributes": {
+		"align": { "type": "string", "default": "full" },
+		"logoId": { "type": "number", "default": 0 },
+		"logoUrl": { "type": "string", "default": "" },
+		"logoAlt": { "type": "string", "default": "Nature Teak Wood" },
+		"backgroundColor": { "type": "string", "default": "" },
+		"menuId": { "type": "number", "default": 0 },
+		"homeLabel": { "type": "string", "default": "Home" },
+		"homeUrl": { "type": "string", "default": "/" },
+		"shopLabel": { "type": "string", "default": "Shop" },
+		"shopUrl": { "type": "string", "default": "/shop" },
+		"contactLabel": { "type": "string", "default": "Contact Us" },
+		"contactUrl": { "type": "string", "default": "/contact-us" },
+		"buttonText": { "type": "string", "default": "Enquiry Now" },
+		"buttonUrl": { "type": "string", "default": "/contact-us" }
+	},
+	"textdomain": "ai-zippy-child",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}
