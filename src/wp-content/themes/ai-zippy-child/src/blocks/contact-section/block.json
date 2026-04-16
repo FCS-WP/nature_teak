@@ -30,6 +30,7 @@
 		"mapImageId": { "type": "number", "default": 0 },
 		"mapImageUrl": { "type": "string", "default": "" },
 		"mapAlt": { "type": "string", "default": "" },
+		"mapEmbedHtml": { "type": "string", "default": "" },
 		"mapTitle": { "type": "string", "default": "Sungei Kadut Timber Hub" },
 		"mapSubtitle": { "type": "string", "default": "Singapore" },
 		"mapLinkText": { "type": "string", "default": "Open in Google Maps" },

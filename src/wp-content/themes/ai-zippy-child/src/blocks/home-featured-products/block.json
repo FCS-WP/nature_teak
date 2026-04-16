@@ -22,6 +22,8 @@
 		"heading": { "type": "string", "default": "Popular Timber Lines" },
 		"buttonText": { "type": "string", "default": "Shop All" },
 		"buttonUrl": { "type": "string", "default": "#shop" },
+		"productsToShow": { "type": "number", "default": 4 },
+		"fallbackToLatest": { "type": "boolean", "default": true },
 		"cardOneImageId": { "type": "number", "default": 0 },
 		"cardOneImageUrl": { "type": "string", "default": "" },
 		"cardOneCategory": { "type": "string", "default": "Solid Teak" },

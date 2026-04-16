@@ -96,6 +96,12 @@
     background: color-mix(in srgb, var(--ntfp-border) 45%, white);
   }
 
+  .ntfp__image-link,
+  .ntfp__card-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .ntfp__image,
   .ntfp__placeholder {
     width: 100%;
@@ -139,6 +145,10 @@
     font-family: var(--ntfp-serif);
     font-size: 15px;
     font-weight: 600;
+  }
+
+  .ntfp__card-link:hover {
+    color: var(--ntfp-rust);
   }
 
   .ntfp__spec {

@@ -45,6 +45,14 @@
       "type": "string",
       "default": "#shop"
     },
+    "productsToShow": {
+      "type": "number",
+      "default": 4
+    },
+    "fallbackToLatest": {
+      "type": "boolean",
+      "default": true
+    },
     "cardOneImageId": {
       "type": "number",
       "default": 0

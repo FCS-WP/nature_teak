@@ -15,6 +15,7 @@ $location_tagline = esc_html($attributes['locationTagline'] ?? '');
 
 $map_image_url  = esc_url($attributes['mapImageUrl'] ?? '');
 $map_alt        = esc_attr($attributes['mapAlt'] ?? '');
+$map_embed_html = (string) ($attributes['mapEmbedHtml'] ?? '');
 $map_title      = esc_html($attributes['mapTitle'] ?? '');
 $map_subtitle   = esc_html($attributes['mapSubtitle'] ?? '');
 $map_link_text  = esc_html($attributes['mapLinkText'] ?? '');
@@ -55,6 +56,35 @@ if ($background_color) {
 }
 
 $wrapper = get_block_wrapper_attributes($wrapper_args);
+$allowed_map_embed_html = [
+    'iframe' => [
+        'src' => true,
+        'width' => true,
+        'height' => true,
+        'style' => true,
+        'allowfullscreen' => true,
+        'loading' => true,
+        'referrerpolicy' => true,
+        'title' => true,
+        'class' => true,
+    ],
+    'div' => [
+        'class' => true,
+        'style' => true,
+    ],
+    'small' => [
+        'class' => true,
+        'style' => true,
+    ],
+    'a' => [
+        'href' => true,
+        'target' => true,
+        'rel' => true,
+        'style' => true,
+        'class' => true,
+    ],
+];
+$map_embed_html = wp_kses($map_embed_html, $allowed_map_embed_html);
 ?>
 
 <div <?php echo $wrapper; ?>>
@@ -84,10 +114,14 @@ $wrapper = get_block_wrapper_attributes($wrapper_args);
                 </div>
 
                 <div class="cts__map-card">
-                    <?php if ($map_image_url) : ?><img src="<?php echo $map_image_url; ?>" alt="<?php echo $map_alt; ?>" class="cts__map-image" loading="lazy" /><?php endif; ?>
-                    <?php if ($map_title) : ?><p class="cts__map-title"><?php echo $map_title; ?></p><?php endif; ?>
-                    <?php if ($map_subtitle) : ?><p class="cts__map-subtitle"><?php echo $map_subtitle; ?></p><?php endif; ?>
-                    <?php if ($map_link_text) : ?><a class="cts__map-link" href="<?php echo $map_link_url; ?>"><?php echo $map_link_text; ?></a><?php endif; ?>
+                    <?php if ($map_embed_html !== '') : ?>
+                        <div class="cts__map-embed"><?php echo $map_embed_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+                    <?php else : ?>
+                        <?php if ($map_image_url) : ?><img src="<?php echo $map_image_url; ?>" alt="<?php echo $map_alt; ?>" class="cts__map-image" loading="lazy" /><?php endif; ?>
+                        <?php if ($map_title) : ?><p class="cts__map-title"><?php echo $map_title; ?></p><?php endif; ?>
+                        <?php if ($map_subtitle) : ?><p class="cts__map-subtitle"><?php echo $map_subtitle; ?></p><?php endif; ?>
+                        <?php if ($map_link_text) : ?><a class="cts__map-link" href="<?php echo $map_link_url; ?>"><?php echo $map_link_text; ?></a><?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
 

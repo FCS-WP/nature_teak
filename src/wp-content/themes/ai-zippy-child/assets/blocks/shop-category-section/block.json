@@ -45,6 +45,10 @@
       "type": "string",
       "default": ""
     },
+    "useCurrentCategory": {
+      "type": "boolean",
+      "default": false
+    },
     "category": {
       "type": "string",
       "default": ""

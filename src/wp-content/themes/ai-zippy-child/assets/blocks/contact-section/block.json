@@ -77,6 +77,10 @@
       "type": "string",
       "default": ""
     },
+    "mapEmbedHtml": {
+      "type": "string",
+      "default": ""
+    },
     "mapTitle": {
       "type": "string",
       "default": "Sungei Kadut Timber Hub"
