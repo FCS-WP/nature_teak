@@ -1,0 +1,100 @@
+.wp-block-ai-zippy-child-site-header-v2 {
+  .nthv2-editor__picker {
+    margin-bottom: 14px;
+  }
+
+  .nthv2-editor__thumb {
+    width: auto;
+    max-width: 240px;
+    max-height: 100px;
+    object-fit: contain;
+    border: 1px solid var(--wp--preset--color--border, #ddd5c8);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background: #fff;
+
+    &--empty {
+      width: 220px;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fbf7ef;
+      color: rgba(7, 7, 7, 0.62);
+      font-size: 12px;
+    }
+  }
+
+  .nthv2-editor__link-group {
+    margin-bottom: 18px;
+  }
+
+  .nthv2-editor__icon-control {
+    margin-bottom: 20px;
+  }
+
+  .nthv2-editor__control-label {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .nthv2-editor__icon-picker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .nthv2-editor__icon-thumb {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border: 1px solid var(--wp--preset--color--border, #ddd5c8);
+    border-radius: 6px;
+    background: #fff;
+
+    &--empty {
+      display: flex;
+      width: 54px;
+      align-items: center;
+      justify-content: center;
+      color: rgba(7, 7, 7, 0.62);
+      font-size: 11px;
+    }
+  }
+
+  .nthv2__brand-text {
+    cursor: text;
+  }
+
+  .nthv2__offcanvas-preview {
+    margin: 0 52px 22px;
+    padding: 18px;
+    border: 1px dashed rgba(7, 7, 7, 0.18);
+    background: color-mix(in srgb, #fbf7ef 72%, white);
+  }
+
+  .nthv2__offcanvas-title {
+    margin: 0 0 14px;
+    color: #070707;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nthv2__offcanvas-nav {
+    margin-bottom: 16px;
+  }
+
+  .nthv2__offcanvas-cta {
+    width: auto;
+  }
+
+  .block-editor-rich-text__editable:focus {
+    outline: 2px solid color-mix(in srgb, #ff6c73 35%, transparent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

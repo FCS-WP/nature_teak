@@ -67,6 +67,7 @@ export default function Edit({ attributes, setAttributes }) {
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [loadError, setLoadError] = useState("");
+	const [enquiryEnabled, setEnquiryEnabled] = useState(true);
 
 	const categoryMap = useMemo(
 		() =>
@@ -116,6 +117,12 @@ export default function Edit({ attributes, setAttributes }) {
 				)
 			)
 			.catch(() => setCategories([]));
+	}, []);
+
+	useEffect(() => {
+		apiFetch({ path: "/ai-zippy-child/v1/product-card-actions" })
+			.then((data) => setEnquiryEnabled(data.enquiryEnabled !== false))
+			.catch(() => setEnquiryEnabled(true));
 	}, []);
 
 	useEffect(() => {
@@ -239,15 +246,28 @@ export default function Edit({ attributes, setAttributes }) {
 					</BaseControl>
 				</PanelBody>
 
-				<PanelBody title="Enquire Button" initialOpen={false}>
+				<PanelBody title="Product Card Action" initialOpen={false}>
+					<Notice status="info" isDismissible={false}>
+						{enquiryEnabled
+							? __(
+									"Global WooCommerce setting is showing enquiry buttons.",
+									"ai-zippy-child"
+								)
+							: __(
+									"Global WooCommerce setting is showing add-to-cart buttons.",
+									"ai-zippy-child"
+								)}
+					</Notice>
 					<TextControl
-						label="Button Text"
+						label="Enquiry Button Text"
 						value={attributes.enquireText}
 						onChange={(value) => setAttributes({ enquireText: value })}
+						disabled={!enquiryEnabled}
 					/>
 					<URLInputButton
 						url={attributes.enquireUrl}
 						onChange={(value) => setAttributes({ enquireUrl: value })}
+						disabled={!enquiryEnabled}
 					/>
 				</PanelBody>
 
@@ -385,7 +405,9 @@ export default function Edit({ attributes, setAttributes }) {
 								<div className="scs__image-wrap">
 									<img src={product.image} alt={product.name} className="scs__image" />
 									<span className="scs__enquire">
-										{attributes.enquireText || __("Enquire", "ai-zippy-child")}
+										{enquiryEnabled
+											? attributes.enquireText || __("Enquire", "ai-zippy-child")
+											: __("Add to cart", "ai-zippy-child")}
 									</span>
 								</div>
 								<div className="scs__info">

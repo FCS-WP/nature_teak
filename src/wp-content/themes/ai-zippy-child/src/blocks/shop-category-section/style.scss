@@ -107,6 +107,8 @@
   }
 
   .scs__info {
+    position: relative;
+    min-height: 116px;
     padding: 18px 20px 20px;
   }
 
@@ -130,9 +132,30 @@
 
   .scs__spec {
     margin: 0;
+    padding-right: 92px;
     color: var(--scs-muted);
     font-size: 12px;
     font-weight: 300;
+  }
+
+  .scs__view-cart,
+  .added_to_cart.wc-forward {
+    display: none !important;
+  }
+
+  .scs__view-cart {
+    position: absolute;
+    right: 20px;
+    bottom: 18px;
+    color: var(--scs-rust);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .scs__card.is-cart-added .scs__view-cart {
+    display: inline-flex !important;
   }
 
   .scs__promo {

@@ -5,11 +5,21 @@ function formatPrice(priceStr, decimals = 2) {
 	return `$${num.toFixed(decimals)}`;
 }
 
+function decodeHtmlEntities(value) {
+	if (typeof document === "undefined") {
+		return String(value || "");
+	}
+
+	const textarea = document.createElement("textarea");
+	textarea.innerHTML = String(value || "");
+	return textarea.value;
+}
+
 export default function CartRow({ item, busy, onUpdateQty, onRemove }) {
 	const img = item.images?.[0];
-	const name = item.name;
+	const name = decodeHtmlEntities(item.name || "Product");
 	const variation = item.variation
-		?.map((v) => v.value)
+		?.map((v) => decodeHtmlEntities(v.value))
 		.filter(Boolean)
 		.join(", ");
 	const lineTotal = formatPrice(item.totals.line_total);

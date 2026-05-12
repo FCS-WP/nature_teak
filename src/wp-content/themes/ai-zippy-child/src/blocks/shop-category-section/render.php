@@ -33,6 +33,10 @@ $per_page         = max(1, min(12, (int) ($attributes['perPage'] ?? 4)));
 $columns          = max(2, min(4, (int) ($attributes['columns'] ?? 4)));
 $enquire_text     = esc_html($attributes['enquireText'] ?? 'Enquire');
 $enquire_url      = esc_url($attributes['enquireUrl'] ?? '#');
+$enquiry_enabled  = function_exists('ai_zippy_child_is_product_enquiry_enabled')
+    ? ai_zippy_child_is_product_enquiry_enabled()
+    : true;
+$cart_url         = function_exists('wc_get_cart_url') ? esc_url(wc_get_cart_url()) : '';
 $show_promo       = !empty($attributes['showPromoCard']);
 $promo_icon       = esc_html($attributes['promoIcon'] ?? '');
 $promo_title      = esc_html($attributes['promoTitle'] ?? '');
@@ -108,16 +112,31 @@ $wrapper = get_block_wrapper_attributes($wrapper_args);
                 $category_name     = !empty($category_terms) ? $category_terms[0] : '';
                 $short_description = wp_strip_all_tags($product->get_short_description());
                 $spec_text         = $short_description !== '' ? $short_description : wp_strip_all_tags($product->get_price_html());
+                $action_text       = $enquiry_enabled ? $enquire_text : esc_html($product->add_to_cart_text());
+                $action_url        = $enquiry_enabled ? $enquire_url : esc_url($product->add_to_cart_url());
+                $action_classes    = ['scs__enquire', 'scs__action'];
+                $action_attrs      = '';
+
+                if (! $enquiry_enabled) {
+                    $action_classes[] = 'scs__action--cart';
+
+                    if ($product->supports('ajax_add_to_cart') && $product->is_purchasable() && $product->is_in_stock()) {
+                        $action_attrs .= ' data-product-id="' . esc_attr((string) $product->get_id()) . '"';
+                        $action_attrs .= ' data-product_id="' . esc_attr((string) $product->get_id()) . '"';
+                        $action_attrs .= ' data-quantity="1"';
+                    }
+                }
                 ?>
                 <div class="scs__card">
                     <div class="scs__image-wrap">
                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" class="scs__image" loading="lazy" />
-                        <a class="scs__enquire" href="<?php echo $enquire_url; ?>"><?php echo $enquire_text; ?></a>
+                        <a class="<?php echo esc_attr(implode(' ', $action_classes)); ?>" href="<?php echo $action_url; ?>" aria-label="<?php echo esc_attr($action_text . ' - ' . $product->get_name()); ?>" rel="nofollow"<?php echo $action_attrs; ?>><?php echo $action_text; ?></a>
                     </div>
                     <div class="scs__info">
                         <?php if ($category_name) : ?><span class="scs__cat"><?php echo esc_html($category_name); ?></span><?php endif; ?>
                         <h3 class="scs__name"><?php echo esc_html($product->get_name()); ?></h3>
                         <?php if ($spec_text) : ?><p class="scs__spec"><?php echo esc_html($spec_text); ?></p><?php endif; ?>
+                        <?php if (! $enquiry_enabled && $cart_url) : ?><a class="scs__view-cart" href="<?php echo $cart_url; ?>"><?php esc_html_e('View cart', 'ai-zippy-child'); ?></a><?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
