@@ -75,6 +75,8 @@ class ProductFilterApi
             'category'     => ['type' => 'string',  'sanitize_callback' => 'sanitize_text_field', 'default' => ''],
             'min_price'    => ['type' => 'number',  'sanitize_callback' => 'absint',              'default' => 0],
             'max_price'    => ['type' => 'number',  'sanitize_callback' => 'absint',              'default' => 0],
+            'brands'       => ['type' => 'string',  'sanitize_callback' => 'sanitize_text_field', 'default' => ''],
+            'tags'         => ['type' => 'string',  'sanitize_callback' => 'sanitize_text_field', 'default' => ''],
             'attributes'   => ['type' => 'string',  'sanitize_callback' => 'sanitize_text_field', 'default' => ''],
             'stock_status' => ['type' => 'string',  'sanitize_callback' => 'sanitize_text_field', 'default' => ''],
             'orderby'      => ['type' => 'string',  'sanitize_callback' => 'sanitize_text_field', 'default' => 'menu_order'],
@@ -92,6 +94,8 @@ class ProductFilterApi
     {
         $search       = $request->get_param('search');
         $category     = $request->get_param('category');
+        $brands       = $request->get_param('brands');
+        $tags         = $request->get_param('tags');
         $min_price    = $request->get_param('min_price');
         $max_price    = $request->get_param('max_price');
         $attributes   = $request->get_param('attributes');
@@ -149,6 +153,54 @@ class ProductFilterApi
             $args['max_price'] = $max_price;
         }
 
+        // Brands filter (comma-separated slugs)
+        if (!empty($brands)) {
+            $brand_slugs = array_map('trim', explode(',', $brands));
+            if (!empty($args['tax_query'])) {
+                $args['tax_query'][] = [
+                    'taxonomy' => 'product_brand',
+                    'field'    => 'slug',
+                    'terms'    => $brand_slugs,
+                    'operator' => 'IN',
+                ];
+            } else {
+                $args['tax_query'] = [
+                    [
+                        'taxonomy' => 'product_brand',
+                        'field'    => 'slug',
+                        'terms'    => $brand_slugs,
+                        'operator' => 'IN',
+                    ],
+                ];
+            }
+        }
+
+        // Tags filter (comma-separated slugs)
+        if (!empty($tags)) {
+            $tag_slugs = array_map('trim', explode(',', $tags));
+            if (!empty($args['tax_query'])) {
+                $args['tax_query'][] = [
+                    'taxonomy' => 'product_tag',
+                    'field'    => 'slug',
+                    'terms'    => $tag_slugs,
+                    'operator' => 'IN',
+                ];
+                // Ensure AND relation when combining tax queries
+                if (empty($args['tax_query']['relation'])) {
+                    $args['tax_query']['relation'] = 'AND';
+                }
+            } else {
+                $args['tax_query'] = [
+                    [
+                        'taxonomy' => 'product_tag',
+                        'field'    => 'slug',
+                        'terms'    => $tag_slugs,
+                        'operator' => 'IN',
+                    ],
+                ];
+            }
+        }
+
         // Stock status
         if (!empty($stock_status)) {
             $args['stock_status'] = $stock_status;
@@ -156,9 +208,13 @@ class ProductFilterApi
 
         // Attributes: "pa_color:red,blue|pa_size:large"
         if (!empty($attributes)) {
-            $tax_query = self::parseAttributeQuery($attributes);
-            if (!empty($tax_query)) {
-                $args['tax_query'] = $tax_query;
+            $attr_tax_query = self::parseAttributeQuery($attributes);
+            if (!empty($attr_tax_query)) {
+                if (!empty($args['tax_query'])) {
+                    $args['tax_query'] = array_merge($args['tax_query'], $attr_tax_query);
+                } else {
+                    $args['tax_query'] = $attr_tax_query;
+                }
             }
         }
 
@@ -194,6 +250,8 @@ class ProductFilterApi
 
         $data = [
             'categories'  => self::getCategories(),
+            'brands'      => self::getBrands(),
+            'tags'        => self::getTags(),
             'attributes'  => self::getAttributes(),
             'price_range' => self::getPriceRange(),
         ];
@@ -324,6 +382,50 @@ class ProductFilterApi
             'count'  => $cat->count,
             'parent' => $cat->parent,
         ], $categories);
+    }
+
+    private static function getBrands(): array
+    {
+        if (!taxonomy_exists('product_brand')) {
+            return [];
+        }
+
+        $brands = get_terms([
+            'taxonomy'   => 'product_brand',
+            'hide_empty' => true,
+            'orderby'    => 'name',
+        ]);
+
+        if (is_wp_error($brands)) {
+            return [];
+        }
+
+        return array_map(fn($brand) => [
+            'id'     => $brand->term_id,
+            'name'   => $brand->name,
+            'slug'   => $brand->slug,
+            'count'  => $brand->count,
+        ], $brands);
+    }
+
+    private static function getTags(): array
+    {
+        $tags = get_terms([
+            'taxonomy'   => 'product_tag',
+            'hide_empty' => true,
+            'orderby'    => 'name',
+        ]);
+
+        if (is_wp_error($tags)) {
+            return [];
+        }
+
+        return array_map(fn($tag) => [
+            'id'     => $tag->term_id,
+            'name'   => $tag->name,
+            'slug'   => $tag->slug,
+            'count'  => $tag->count,
+        ], $tags);
     }
 
     private static function getAttributes(): array

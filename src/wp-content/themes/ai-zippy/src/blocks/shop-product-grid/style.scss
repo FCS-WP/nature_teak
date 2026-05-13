@@ -1,0 +1,480 @@
+// Shop Product Grid — Frontend Styles
+
+$spg-primary: var(--wp--preset--color--primary, #1a1a1a);
+$spg-accent:  var(--wp--preset--color--accent, #c8a97e);
+$spg-border:  #e8e8e8;
+$spg-radius:  12px;
+$spg-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$spg-orange:  #e8572a;
+
+.wp-block-ai-zippy-shop-product-grid {
+	margin: 0 auto;
+}
+
+// ---- TOOLBAR ----
+.spg__toolbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	padding: 0.75rem 0;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid $spg-border;
+}
+
+.spg__toolbar-left,
+.spg__toolbar-right {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.spg__count {
+	font-size: 0.85rem;
+	color: #666;
+}
+
+.spg__sort {
+	padding: 0.45rem 2rem 0.45rem 0.75rem;
+	border: 1px solid $spg-border;
+	border-radius: 8px;
+	font-size: 0.8rem;
+	background: #fff;
+	cursor: pointer;
+	transition: border-color $spg-transition;
+
+	&:focus {
+		border-color: $spg-primary;
+		outline: none;
+	}
+}
+
+.spg__view-toggle {
+	display: flex;
+	gap: 2px;
+}
+
+.spg__view-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border: 1px solid $spg-border;
+	background: #fff;
+	color: #aaa;
+	cursor: pointer;
+	transition: all $spg-transition;
+
+	&:first-child { border-radius: 8px 0 0 8px; }
+	&:last-child { border-radius: 0 8px 8px 0; }
+
+	&:hover,
+	&.is-active {
+		border-color: $spg-primary;
+		color: $spg-primary;
+		background: #f5f5f5;
+	}
+}
+
+// ---- GRID ----
+.spg__grid-wrap {
+	transition: min-height 0.3s ease;
+}
+
+.spg__grid {
+	display: grid;
+	gap: 1.25rem;
+	animation: spgFadeIn 0.3s ease;
+}
+
+.spg__grid--grid {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.spg__grid--list {
+	grid-template-columns: 1fr;
+}
+
+.spg__grid--loading {
+	position: relative;
+	min-height: 200px;
+
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: rgba(255, 255, 255, 0.7);
+		z-index: 10;
+	}
+}
+
+// ---- PRODUCT CARD ----
+.spg__card {
+	border: 1px solid $spg-border;
+	border-radius: $spg-radius;
+	overflow: hidden;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	transition: transform $spg-transition, box-shadow $spg-transition;
+
+	&:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+	}
+
+	.spg__grid--list & {
+		flex-direction: row;
+		align-items: stretch;
+	}
+}
+
+.spg__card-image {
+	position: relative;
+	background: #f8f8f8;
+	overflow: hidden;
+
+	> a {
+		display: block;
+		overflow: hidden;
+
+		> img {
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			object-fit: contain;
+			display: block;
+			padding: 1.25rem;
+			transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+	}
+
+	.spg__card:hover & > a > img {
+		transform: scale(1.06);
+	}
+
+	.spg__grid--list & {
+		width: 220px;
+		min-width: 220px;
+
+		> a > img {
+			height: 100%;
+			aspect-ratio: auto;
+		}
+	}
+}
+
+.spg__badge {
+	position: absolute;
+	top: 0.75rem;
+	left: 0.75rem;
+	padding: 0.3rem 0.75rem;
+	border-radius: 6px;
+	font-size: 0.65rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	z-index: 2;
+
+	&--sale {
+		background: $spg-orange;
+		color: #fff;
+	}
+
+	&--oos {
+		background: #666;
+		color: #fff;
+	}
+}
+
+.spg__wish {
+	position: absolute;
+	top: 0.75rem;
+	right: 0.75rem;
+	width: 34px;
+	height: 34px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.9);
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	color: #ccc;
+	transition: all $spg-transition;
+	z-index: 2;
+
+	&:hover,
+	&.is-active {
+		color: $spg-orange;
+		background: #fff;
+	}
+}
+
+.spg__thumbs {
+	display: flex;
+	gap: 0.35rem;
+	padding: 0.5rem 0.85rem 0.85rem;
+}
+
+.spg__thumb {
+	width: 36px;
+	height: 36px;
+	border: 2px solid transparent;
+	border-radius: 6px;
+	overflow: hidden;
+	cursor: pointer;
+	background: #fff;
+	padding: 2px;
+	transition: border-color $spg-transition;
+
+	&.is-active,
+	&:hover {
+		border-color: $spg-primary;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		display: block;
+	}
+
+	&--more {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: #999;
+		text-decoration: none;
+		background: #f0f0f0;
+
+		&:hover {
+			color: $spg-primary;
+			border-color: $spg-primary;
+		}
+	}
+}
+
+.spg__card-body {
+	padding: 1rem 1rem 1.15rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	flex: 1;
+
+	.spg__grid--list & {
+		padding: 1rem;
+		justify-content: center;
+	}
+}
+
+.spg__card-cat {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: $spg-orange;
+	font-weight: 600;
+}
+
+.spg__card-title {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: $spg-primary;
+	text-decoration: none;
+	line-height: 1.3;
+	transition: color $spg-transition;
+
+	&:hover {
+		color: $spg-accent;
+	}
+}
+
+.spg__card-rating {
+	margin-top: 0.15rem;
+
+	.star-rating,
+	.spg__stars {
+		font-size: 0.8rem;
+		color: #f5a623;
+		letter-spacing: 1px;
+	}
+}
+
+.spg__card-price {
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: $spg-primary;
+	margin-top: 0.35rem;
+
+	del {
+		color: #bbb;
+		font-size: 0.85em;
+		font-weight: 400;
+		margin-left: 0.35rem;
+	}
+
+	ins {
+		text-decoration: none;
+	}
+
+	.woocommerce-Price-amount {
+		font-size: inherit;
+		font-weight: inherit;
+	}
+}
+
+.spg__card-actions {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: auto;
+	padding-top: 0.85rem;
+}
+
+.spg__card-btn {
+	flex: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.7rem 1rem;
+	background: $spg-primary;
+	color: #fff !important;
+	border: none;
+	border-radius: 8px;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	transition: opacity $spg-transition, transform $spg-transition;
+
+	&:hover {
+		opacity: 0.85;
+		transform: translateY(-1px);
+	}
+}
+
+.spg__card-wish-sm {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: 1px solid $spg-border;
+	border-radius: 8px;
+	cursor: pointer;
+	color: #ccc;
+	transition: all $spg-transition;
+	flex-shrink: 0;
+
+	&:hover,
+	&.is-active {
+		color: $spg-orange;
+		border-color: $spg-orange;
+	}
+}
+
+// ---- EMPTY ----
+.spg__empty {
+	text-align: center;
+	padding: 3rem 1rem;
+	color: #999;
+	font-size: 0.95rem;
+	animation: spgFadeIn 0.3s ease;
+}
+
+// ---- PAGINATION ----
+.spg__pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.35rem;
+	margin-top: 2.5rem;
+}
+
+.spg__page-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 36px;
+	height: 36px;
+	padding: 0 0.6rem;
+	border: 1px solid $spg-border;
+	border-radius: 8px;
+	background: #fff;
+	color: $spg-primary;
+	font-size: 0.85rem;
+	cursor: pointer;
+	transition: all $spg-transition;
+
+	&:hover:not(:disabled),
+	&.is-active {
+		background: $spg-primary;
+		color: #fff;
+		border-color: $spg-primary;
+	}
+
+	&:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+}
+
+.spg__page-dots {
+	color: #ccc;
+	padding: 0 0.25rem;
+}
+
+// ---- ANIMATIONS ----
+@keyframes spgFadeIn {
+	from { opacity: 0; transform: translateY(6px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+
+// ---- RESPONSIVE ----
+@media (max-width: 1024px) {
+	.spg__grid--grid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.spg__grid--grid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+
+	.spg__grid--list .spg__card {
+		flex-direction: column;
+	}
+
+	.spg__grid--list .spg__card-image {
+		width: 100%;
+		min-width: 0;
+	}
+
+	.spg__card-image > a > img {
+		padding: 0.75rem;
+	}
+
+	.spg__toolbar {
+		gap: 0.5rem;
+	}
+
+	.spg__toolbar-left,
+	.spg__toolbar-right {
+		width: 100%;
+		justify-content: space-between;
+	}
+}
+
+@media (max-width: 480px) {
+	.spg__grid--grid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+}

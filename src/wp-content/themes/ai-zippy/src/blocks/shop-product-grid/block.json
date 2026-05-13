@@ -1,0 +1,55 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/shop-product-grid",
+	"version": "1.0.0",
+	"title": "Shop Product Grid",
+	"category": "ai-zippy",
+	"icon": "grid-view",
+	"description": "Display all shop products in a grid or list view with sorting and pagination. Works with the Shop Product Filter block.",
+	"keywords": ["shop", "products", "grid", "list", "pagination", "woocommerce"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"perPage": {
+			"type": "number",
+			"default": 12
+		},
+		"orderby": {
+			"type": "string",
+			"default": "menu_order"
+		},
+		"order": {
+			"type": "string",
+			"default": "ASC"
+		},
+		"showSaleBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAddToCart": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
