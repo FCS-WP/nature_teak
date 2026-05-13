@@ -1,0 +1,80 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ai-zippy/shop-products",
+	"version": "1.0.0",
+	"title": "Shop Products",
+	"category": "ai-zippy",
+	"icon": "grid-view",
+	"description": "Display shop products with category tabs, section heading, and a View All CTA link.",
+	"keywords": ["shop", "products", "tabs", "category", "woocommerce"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "Our Products"
+		},
+		"subheading": {
+			"type": "string",
+			"default": ""
+		},
+		"columns": {
+			"type": "number",
+			"default": 4
+		},
+		"perPage": {
+			"type": "number",
+			"default": 8
+		},
+		"orderby": {
+			"type": "string",
+			"default": "date"
+		},
+		"categories": {
+			"type": "array",
+			"default": [],
+			"items": { "type": "string" }
+		},
+		"showTabs": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSaleBadge": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAddToCart": {
+			"type": "boolean",
+			"default": true
+		},
+		"viewAllText": {
+			"type": "string",
+			"default": "View All Products"
+		},
+		"viewAllUrl": {
+			"type": "string",
+			"default": "/shop"
+		},
+		"showViewAll": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"textdomain": "ai-zippy",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

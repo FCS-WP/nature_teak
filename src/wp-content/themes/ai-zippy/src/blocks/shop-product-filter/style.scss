@@ -1,0 +1,303 @@
+// Shop Product Filter — Frontend Styles
+
+$spf-primary: var(--wp--preset--color--primary, #1a1a1a);
+$spf-accent:  var(--wp--preset--color--accent, #c8a97e);
+$spf-bg:      var(--wp--preset--color--secondary, #f5f5f5);
+$spf-border:  #e5e5e5;
+$spf-radius:  8px;
+$spf-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+.wp-block-ai-zippy-shop-product-filter {
+	margin: 0;
+}
+
+.spf {
+	background: #fff;
+}
+
+.spf__inner {
+	padding: 1rem;
+}
+
+// Sections
+.spf__section {
+	border-bottom: 1px solid #f0f0f0;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+
+	&:last-child {
+		border-bottom: none;
+		margin-bottom: 0;
+	}
+
+	&.is-open .spf__section-content {
+		display: block;
+		animation: spfFadeIn 0.25s ease;
+	}
+}
+
+.spf__section-toggle {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 0;
+	background: none;
+	border: none;
+	font-size: 0.8rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: $spf-primary;
+	cursor: pointer;
+	transition: color $spf-transition;
+
+	&:hover {
+		color: #555;
+	}
+
+	svg {
+		transition: transform $spf-transition;
+		flex-shrink: 0;
+	}
+}
+
+.spf__section--search .spf__section-toggle {
+	cursor: default;
+
+	svg { display: none; }
+}
+
+.spf__section-content {
+	display: none;
+	margin-top: 0.75rem;
+}
+
+.spf__section--search .spf__section-content,
+.spf__section--stock .spf__section-content {
+	display: block;
+}
+
+// Search
+.spf__search {
+	position: relative;
+}
+
+.spf__search-icon {
+	position: absolute;
+	left: 0.75rem;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #aaa;
+	pointer-events: none;
+}
+
+.spf__search-input {
+	width: 100%;
+	padding: 0.55rem 2rem 0.55rem 2.25rem;
+	border: 1px solid $spf-border;
+	border-radius: $spf-radius;
+	font-size: 0.85rem;
+	transition: border-color $spf-transition, box-shadow $spf-transition;
+
+	&:focus {
+		border-color: $spf-primary;
+		box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+		outline: none;
+	}
+
+	&::placeholder {
+		color: #bbb;
+	}
+}
+
+.spf__search-clear {
+	position: absolute;
+	right: 0.5rem;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	font-size: 1.2rem;
+	color: #999;
+	cursor: pointer;
+	line-height: 1;
+	transition: color $spf-transition;
+	display: none;
+	width: 24px;
+	height: 24px;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		color: #e53935;
+	}
+}
+
+// Checkbox / Radio
+.spf__checkbox,
+.spf__radio {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.3rem 0;
+	font-size: 0.85rem;
+	cursor: pointer;
+	transition: color $spf-transition;
+
+	&:hover {
+		color: #555;
+	}
+
+	input {
+		accent-color: #333;
+		cursor: pointer;
+		flex-shrink: 0;
+	}
+}
+
+.spf__checkbox-label {
+	flex: 1;
+}
+
+.spf__checkbox-count {
+	font-size: 0.7rem;
+	color: #999;
+	background: #f5f5f5;
+	padding: 0.1rem 0.45rem;
+	border-radius: 100px;
+	min-width: 20px;
+	text-align: center;
+	flex-shrink: 0;
+}
+
+// Tree list (categories)
+.spf__tree {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.spf__tree--child {
+	padding-left: 1.25rem;
+	margin-top: 0.25rem;
+}
+
+// Price range
+.spf__price-inputs {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.75rem;
+}
+
+.spf__price-input {
+	width: 100%;
+	padding: 0.4rem 0.5rem;
+	border: 1px solid $spf-border;
+	border-radius: $spf-radius;
+	font-size: 0.85rem;
+	text-align: center;
+	transition: border-color $spf-transition;
+
+	&:focus {
+		border-color: $spf-primary;
+		outline: none;
+	}
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+	}
+	-moz-appearance: textfield;
+}
+
+.spf__price-sep {
+	color: #ccc;
+}
+
+.spf__price-slider {
+	width: 100%;
+	accent-color: #333;
+}
+
+// Attributes container
+.spf__attrs .spf__section {
+	border-bottom: 1px solid #f0f0f0;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+
+	&:last-child {
+		border-bottom: none;
+		margin-bottom: 0;
+	}
+}
+
+// Stock status
+.spf__stock {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+
+// Reset button
+.spf__reset {
+	width: 100%;
+	padding: 0.6rem;
+	background: none;
+	border: 1.5px solid $spf-primary;
+	border-radius: $spf-radius;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: $spf-primary;
+	cursor: pointer;
+	transition: all $spf-transition;
+	margin-top: 0.5rem;
+
+	&:hover {
+		background: $spf-primary;
+		color: #fff;
+	}
+}
+
+// Top layout
+.spf--top .spf__inner {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 1rem;
+	background: $spf-bg;
+	border-radius: $spf-radius;
+	padding: 1.25rem;
+}
+
+.spf--top .spf__section {
+	border-bottom: none;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.spf--top .spf__section-toggle {
+	margin-bottom: 0.5rem;
+}
+
+.spf--top .spf__section-content {
+	display: block !important;
+	margin-top: 0;
+}
+
+.spf--top .spf__reset {
+	margin-top: 0;
+	align-self: flex-start;
+}
+
+// Animations
+@keyframes spfFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

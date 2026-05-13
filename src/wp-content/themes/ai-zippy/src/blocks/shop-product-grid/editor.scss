@@ -1,0 +1,131 @@
+// Shop Product Grid — Editor Styles
+
+.spg-editor {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	padding: 1rem;
+	border: 1px dashed #ddd;
+	border-radius: 8px;
+	background: #fafafa;
+}
+
+.spg-editor__toolbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+	padding-bottom: 0.75rem;
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.spg-editor__count,
+.spg-editor__sort {
+	font-size: 0.8rem;
+	color: #666;
+}
+
+.spg-editor__grid {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.spg-editor__card {
+	border: 1px solid #eee;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #fff;
+}
+
+.spg-editor__card-img {
+	position: relative;
+	background: #f5f5f5;
+
+	img {
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		object-fit: contain;
+		display: block;
+		padding: 0.75rem;
+	}
+}
+
+.spg-editor__badge {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	background: #e8572a;
+	color: #fff;
+	font-size: 0.6rem;
+	font-weight: 700;
+	padding: 0.2rem 0.5rem;
+	border-radius: 4px;
+	text-transform: uppercase;
+}
+
+.spg-editor__card-info {
+	padding: 0.6rem 0.75rem 0.75rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+
+.spg-editor__card-name {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #1a1a1a;
+	line-height: 1.3;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.spg-editor__card-rating {
+	font-size: 0.75rem;
+	color: #f5a623;
+	letter-spacing: 1px;
+}
+
+.spg-editor__card-price {
+	font-size: 0.85rem;
+	font-weight: 700;
+	color: #1a1a1a;
+
+	del { color: #bbb; font-weight: 400; }
+	ins { text-decoration: none; }
+}
+
+.spg-editor__loading,
+.spg-editor__empty {
+	text-align: center;
+	padding: 2rem;
+	color: #999;
+	font-size: 0.85rem;
+}
+
+.spg-editor__pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.35rem;
+	margin-top: 1.25rem;
+}
+
+.spg-editor__page {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 32px;
+	height: 32px;
+	padding: 0 0.5rem;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	background: #fff;
+	font-size: 0.75rem;
+	color: #666;
+
+	&.is-active {
+		background: #1a1a1a;
+		color: #fff;
+		border-color: #1a1a1a;
+	}
+}
